@@ -1,0 +1,22 @@
+{
+  "projeto_origem": "/home/nmaldaner/projetos/robos-impressos",
+  "commit_origem": "df6a551f36e29d4beaa3ec8c63d0975a16cdc333",
+  "finalidade": "Referências do cubo móvel; não são peças aprovadas para o novo robô fixo.",
+  "arquivos": [
+    {
+      "origem": "projetos/cubo/stl/cubo-cabeca-corpo.stl",
+      "copia": "referencias/cubo-original/cubo-cabeca-corpo.stl",
+      "sha256": "2b598dfa000fe89adfe2d4cc848de977e5954ca555b76fc180892992a5f5629a"
+    },
+    {
+      "origem": "projetos/cubo/stl/cubo-cabeca-face.stl",
+      "copia": "referencias/cubo-original/cubo-cabeca-face.stl",
+      "sha256": "2273f0825c8ab4f2417b1cd53fb9dbac8a402325dc7152035cdd8df91490e03d"
+    },
+    {
+      "origem": "projetos/cubo/imagens/cubo-montado.jpg",
+      "copia": "referencias/cubo-original/cubo-montado.jpg",
+      "sha256": "4dbb56513456108303ecbe8315d79c03488885ab4ef012a859acae9a6b9b7b9f"
+    }
+  ]
+}

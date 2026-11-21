@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<!-- TEMPLATE projetos-landing-guia. Replace Robô caixa fixa and the content. DO NOT rewrite the CSS.
+     TRILINGUAL: this file is the PT version (guia/index.html). The guia/en/index.html and
+     guia/es/index.html versions are translated copies: lang="en"/"es", selector with a.on for the current language,
+     selector hrefs ../ and ../es/ (or ../en/), and images assets/ -> ../assets/. -->
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Robô caixa fixa — turn your display module into a desktop robot</title>
+<meta content="Two-piece 3D-printed stand for the ESP32-S3 module with a 1.54″ display: renders of the actual model, 3D model, dimensions, STL files, slicing in A1, and assembly." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#FACC15; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#a16207; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:rgba(250,204,21,.12)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(250,204,21,.16),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(250,204,21,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div,.card{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;height:auto;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+</style>
+<link href="https://inematds.github.io/robo-caixa-fixa/guia/en/" rel="canonical"/>
+<link href="https://inematds.github.io/robo-caixa-fixa/guia/" hreflang="pt-BR" rel="alternate"/>
+<link href="https://inematds.github.io/robo-caixa-fixa/guia/en/" hreflang="en" rel="alternate"/>
+<link href="https://inematds.github.io/robo-caixa-fixa/guia/es/" hreflang="es" rel="alternate"/>
+<meta content="https://inematds.github.io/robo-caixa-fixa/guia/assets/banner-en.jpg" property="og:image"/>
+<style>
+  .techhead{background:var(--bg2);border-top:1px solid var(--amb);padding:42px 0}
+  .techzone{background:var(--bg2)}
+  .techzone .card{background:var(--card)}
+  h2{scroll-margin-top:90px}
+  section p,section li{max-width:74ch}
+  li{margin:.5em 0}
+  :focus-visible{outline:3px solid var(--amb);outline-offset:4px}
+  body{overflow-wrap:break-word}
+  figure{margin:0}
+  .foto{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#050507}
+  .foto img{display:block;width:100%;height:auto}
+  .foto figcaption{padding:10px 14px;font-size:.86rem;color:var(--mut);background:var(--card);border-top:1px solid var(--line)}
+  .fotobig{margin-top:26px}
+  .numeros{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border-bottom:1px solid var(--line)}
+  .numeros div{background:var(--bg);padding:22px 12px;text-align:center}
+  .numeros b{display:block;font-family:Sora;font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:var(--amb);letter-spacing:-.02em}
+  .numeros span{font-size:.82rem;color:var(--mut)}
+  @media(max-width:820px){.numeros{grid-template-columns:repeat(3,1fr)}}
+  .lado{display:grid;grid-template-columns:1.35fr 1fr;gap:28px;align-items:start}
+  @media(max-width:860px){.lado{grid-template-columns:1fr}}
+  .legenda{list-style:none;padding:0;margin:0;counter-reset:l}
+  .legenda li{display:grid;grid-template-columns:34px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);margin:0}
+  .legenda li:last-child{border:none}
+  .legenda li::before{counter-increment:l;content:counter(l);width:30px;height:30px;border-radius:8px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+  .legenda b{display:block;font-family:Sora;font-size:.98rem}
+  .legenda span{color:var(--mut);font-size:.9rem}
+  .viewer{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(circle at 50% 35%,#2a2418,#0b0b0e 70%);aspect-ratio:16/10}
+  .viewer model-viewer{width:100%;height:100%;--poster-color:transparent}
+  .viewer .dica{position:absolute;left:14px;bottom:12px;font-size:.8rem;color:#c9c9d2;background:rgba(0,0,0,.55);padding:.35em .7em;border-radius:999px;pointer-events:none}
+  @media(max-width:540px){.viewer{aspect-ratio:4/5}}
+  .cotas{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.cotas{grid-template-columns:1fr}}
+  .cotas figure{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:10px}
+  .cotas svg{display:block;width:100%;height:auto}
+  .cotas figcaption{font-size:.86rem;color:var(--mut);padding:6px 6px 2px}
+  .cota{stroke:var(--amb);stroke-width:.35;fill:none}
+  .cota-t{fill:var(--txt);font:600 3.6px Sora,sans-serif;text-anchor:middle}
+  .cota-s{fill:var(--mut);font:500 3px Inter,sans-serif;text-anchor:middle}
+  table{width:100%;border-collapse:collapse;font-size:.92rem;margin:14px 0}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-family:Sora;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);font-weight:600}
+  .tabela{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+  .tabela table{margin:0}
+  .tabela tr:last-child td{border-bottom:none}
+  .sim{color:var(--amb);font-weight:600}
+  .ico{width:28px;height:28px;color:var(--amb);margin-bottom:.55em;display:block}
+  .bom .card b.q{float:right;font-family:Sora;color:var(--amb)}
+  .dl{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:22px 0}
+  @media(max-width:680px){.dl{grid-template-columns:1fr}}
+  .dl a.card{display:flex;gap:14px;align-items:center;color:var(--txt);transition:border-color .2s}
+  .dl a.card:hover{border-color:var(--amb)}
+  .dl .ordem{flex:0 0 44px;height:44px;border-radius:12px;background:var(--amb);color:#1a1206;font:800 1.15rem Sora;display:flex;align-items:center;justify-content:center}
+  .dl .ordem.cinza{background:var(--bg2);color:var(--mut);border:1px solid var(--line)}
+  .dl small{display:block;color:var(--mut);font-size:.84rem}
+  .monta{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;counter-reset:m}
+  @media(max-width:680px){.monta{grid-template-columns:1fr}}
+  .monta figure{position:relative}
+  .monta figure::before{counter-increment:m;content:counter(m);position:absolute;top:12px;left:12px;width:36px;height:36px;border-radius:10px;background:var(--amb);color:#1a1206;font:800 1.05rem Sora;display:flex;align-items:center;justify-content:center;z-index:2}
+  .monta figcaption b{display:block;color:var(--txt);font-family:Sora;font-size:.98rem;margin-bottom:.2em}
+  .aviso{display:flex;gap:14px;padding:18px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--amb);border-radius:12px;margin-top:22px}
+  .aviso svg{flex:0 0 24px;width:24px;height:24px;color:var(--amb)}
+  .aviso p{margin:0}
+  .checks{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:680px){.checks{grid-template-columns:1fr}}
+  .checks .card b.v{display:block;font:800 1.5rem Sora;color:var(--amb);margin-bottom:.2em}
+  .rotulo{display:inline-block;font:600 .75rem Sora;letter-spacing:.08em;text-transform:uppercase;padding:.2em .6em;border-radius:999px;border:1px solid var(--line);color:var(--mut);margin-bottom:.6em}
+  .rotulo.ok{color:var(--amb);border-color:var(--amb)}
+  details{border-bottom:1px solid var(--line);padding:14px 0}
+  details summary{cursor:pointer;font-family:Sora;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+  details summary::after{content:"+";color:var(--amb);font-weight:800}
+  details[open] summary::after{content:"–"}
+  details p{color:var(--mut);margin:.7em 0 0}
+  .step img{border-radius:12px;border:1px solid var(--line);display:block;width:100%;max-width:640px;height:auto;margin:.4em 0 .8em}
+  body.light .btn,body.light .step .b,body.light .legenda li::before,body.light .dl .ordem:not(.cinza),body.light .monta figure::before{background:#FACC15;color:#1a1206}
+  body.light .numeros b,body.light .checks .card b.v{color:#854d0e}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+</head>
+<body>
+<svg aria-hidden="true" style="display:none">
+  <symbol id="i-alerta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+  <symbol id="i-cubo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.7z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></symbol>
+  <symbol id="i-tela" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="16" rx="2.5"/><rect x="7.5" y="6.5" width="9" height="9" rx="1"/><path d="M10 22h4"/></symbol>
+  <symbol id="i-parafuso" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8v4H8z"/><path d="M10 7v13l2 2 2-2V7"/><path d="M10 11l4-1M10 14l4-1M10 17l4-1"/></symbol>
+  <symbol id="i-porca" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h10l5 8.5-5 8.5H7L2 12z"/><circle cx="12" cy="12" r="3.5"/></symbol>
+  <symbol id="i-bobina" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v6M21 12h-6"/></symbol>
+  <symbol id="i-regua" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 17 3l4 4L7 21z"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2"/></symbol>
+  <symbol id="i-chave" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5 5L21 13l-8 8-3-3 6.3-6.3"/><path d="M3 21l6-6"/></symbol>
+  <symbol id="i-baixar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 21h16"/></symbol>
+</svg>
+<nav><div class="wrap"><a class="brand" href="#top">🤖 Robô caixa fixa</a><span class="sep">|</span><span class="clubpro"><a class="inema" href="https://inema.club" rel="noopener" target="_blank">INEMA.CLUB</a><span class="sep">-</span><a class="pro" href="https://inema.pro" rel="noopener" target="_blank">PRO</a></span><div class="links"><a class="sec" href="#projeto">The project</a><a class="sec" href="#modelo3d">3D model</a><a class="sec" href="#medidas">Dimensions</a><a class="sec" href="#tecnico">Kit (technical)</a><span class="lang"><a href="../">PT</a><a class="on" href="./">EN</a><a href="../es/">ES</a></span><button aria-label="Toggle theme" class="tgl" id="themeToggle">☀️</button><a href="https://github.com/inematds/robo-caixa-fixa">GitHub</a></div></div></nav>
+
+<header class="hero" id="top"><div class="glow"></div><div class="wrap"><div><span class="chip">Open project · 3D printing · ESP32-S3</span><h1>Your display module becomes the head of a <span class="amb">desktop robot.</span></h1><p class="lead">Printed robots often get complicated with motors, gears, and soldering. Robô caixa fixa has a fixed head: the module fits whole into a two-piece stand, and you can test the fit with a small part before using filament for the base. The study files are ready for printing the test cradle; the face on the display comes later, in software.</p><div class="cta"><a class="btn" href="#video">Understand it in 2 minutes</a><a class="btn ghost" href="#downloads">Download the STL files</a></div></div><figure><img alt="Robô caixa fixa banner: the yellow stand with raised INEMA lettering holding the square display module, beside the title Your desktop robot, no motors or soldering" src="../assets/banner-en.jpg"/><figcaption style="padding:8px 12px;font-size:.8rem;color:var(--mut);background:var(--card)">AI-generated illustration. The stand has not been printed yet; images of the actual model are below.</figcaption></figure></div></header>
+
+<div class="numeros" aria-label="The project in numbers">
+  <div><b>2</b><span>printed parts</span></div>
+  <div><b>2 + 2</b><span>M3 screws and nuts</span></div>
+  <div><b>0</b><span>motors or solder joints</span></div>
+  <div><b>76 × 64</b><span>mm base</span></div>
+  <div><b>78.4</b><span>mm tall when assembled</span></div>
+  <div><b>38.3</b><span>cm³ total part volume</span></div>
+</div>
+
+<section class="resumo" id="resumo"><div class="wrap"><h2>In short</h2><p>Anyone who wants a desktop robot often runs into the mechanical side: servos, gears, and wires. Robô caixa fixa is a 3D-printed stand that turns the Waveshare ESP32-S3 module with a 1.54-inch display into a fixed head on a base. The module stays whole, with its factory case and electronics. You need a 3D printer, Bambu Studio, filament, the module, and two screws with nuts. The design was checked on a computer, but has not been printed yet. The face on the display and the AI conversation do not exist yet: this guide covers the stand only.</p><figure class="foto fotobig"><img alt="Banner showing the project parts: complete module, test cradle, base with INEMA, two M3 screws, slicing on the A1, and 3D assembly" loading="lazy" src="../assets/banner-grade-en.jpg"/><figcaption><strong>AI-generated illustration:</strong> no parts have been printed yet. The exact shapes appear in the actual model images just below.</figcaption></figure></div></section>
+
+<!-- VIDEO: PT project -->
+<section id="video"><div class="wrap"><span class="chip">Video</span><h2>Understand it in 2 minutes</h2><p class="sub">Video in Portuguese. Prototype: the stand has not been printed yet, and the face and AI conversation do not exist yet.</p><video controls preload="none" playsinline poster="../assets/video-poster.jpg" style="display:block;width:100%;aspect-ratio:16/9;border-radius:14px;background:#000"><source src="https://github.com/inematds/robo-caixa-fixa/releases/download/video-v1.0.0/robo-caixa-fixa.mp4" type="video/mp4"/></video><p><a href="https://www.youtube.com/watch?v=BEY94Ag9BWk">Watch on YouTube</a> · <a href="https://github.com/inematds/robo-caixa-fixa/releases/download/video-v1.0.0/robo-caixa-fixa.srt">SRT · PT</a></p></div></section>
+<!-- /VIDEO -->
+
+<section id="projeto"><div class="wrap"><span class="chip">The project</span><h2>A fixed head, with the module intact</h2><p class="sub">The display, audio, and optional battery stay inside the original case. The stand simply holds the assembly: the front remains clear for touch, and the top buttons stay within reach.</p>
+<figure class="foto"><img alt="Render of the actual model: yellow base with raised INEMA lettering, column, graphite cradle, and the square module with a black display fitted in place" loading="lazy" src="../assets/r-conjunto.jpg"/><figcaption>Render of the actual CAD file. The base and cradle are the parts you print. The module is simplified (46 × 46 × 22.5 mm box), without each button and opening.</figcaption></figure>
+<div class="grid g3" style="margin-top:18px">
+  <div class="card"><svg class="ico"><use href="#i-cubo"/></svg><h3>Base with column</h3><p>76 × 64 mm plate with a column at the back; 54 mm tall overall. INEMA lettering raised on the front, the same colour as the base and part of the same piece.</p></div>
+  <div class="card"><svg class="ico"><use href="#i-cubo"/></svg><h3>Cradle</h3><p>Small part (51.6 × 24 × 31.9 mm) that holds the module at the sides and underneath. Print this first to test the fit.</p></div>
+  <div class="card"><svg class="ico"><use href="#i-tela"/></svg><h3>Factory module</h3><p>Waveshare ESP32-S3 with a 1.54″ display. It slides in and out from above without disassembly or soldering.</p></div>
+</div>
+<div class="grid g2" style="margin-top:18px">
+  <figure class="foto"><img alt="Front render: the module display is unobstructed, with the cradle holding it at the sides" loading="lazy" src="../assets/r-frente.jpg"/><figcaption>Front view: the full display is visible, with no part of the stand over it.</figcaption></figure>
+  <figure class="foto"><img alt="Rear render: the base column with both M3 nuts visible" loading="lazy" src="../assets/r-costas.jpg"/><figcaption>Rear view: both M3 nuts sit on the back of the column.</figcaption></figure>
+</div></div></section>
+
+<section id="explodida"><div class="wrap"><span class="chip">How it fits together</span><h2>Five parts, no glue</h2><p class="sub">The exploded view separates the parts in the order you assemble them. The screws pass through the cradle and column; each screw head is hidden behind the module.</p>
+<div class="lado"><figure class="foto"><img alt="Exploded view: module above, cradle in front of the column, two screws in front of the cradle, and two nuts behind the column" loading="lazy" src="../assets/r-explodida.jpg"/><figcaption>Exploded view of the actual model. Screws and nuts are shown in simplified form.</figcaption></figure>
+<ol class="legenda">
+  <li><div><b>ESP32-S3 module with display</b><span>Lower it from above until it rests in the cradle. Its own weight holds it in place.</span></div></li>
+  <li><div><b>Cradle (print first)</b><span>Holds the sides and bottom of the module, with 0.4 mm of clearance on each side.</span></div></li>
+  <li><div><b>2 M3 × 16 screws</b><span>Insert them through the front of the cradle. The heads sit in a 4 mm gap behind the module.</span></div></li>
+  <li><div><b>Base with column and INEMA</b><span>The column holds the cradle; the two holes line up with the cradle holes.</span></div></li>
+  <li><div><b>2 M3 nuts</b><span>Tighten the assembly from the back of the column.</span></div></li>
+</ol></div></div></section>
+
+<section id="modelo3d"><div class="wrap"><span class="chip">3D model</span><h2>Turn the robot in your hand</h2><p class="sub">This is the project assembly file (the same GLB included in the download). Drag to rotate and use two fingers or the mouse wheel to zoom. File colours: yellow base, grey cradle, white module, blue display area.</p>
+<div class="viewer"><model-viewer src="../downloads/montagem-ESTUDO.glb" orientation="0deg -90deg 0deg" poster="../assets/r-conjunto.jpg" alt="Interactive 3D assembly of Robô caixa fixa" camera-controls touch-action="pan-y" auto-rotate auto-rotate-delay="1500" rotation-per-second="18deg" camera-orbit="150deg 72deg auto" shadow-intensity="1" exposure="1.05" interaction-prompt="none"></model-viewer><span class="dica">Drag to rotate</span></div>
+<p class="mut" style="font-size:.88rem">If the model does not appear, <a download href="../downloads/montagem-ESTUDO.glb">download the GLB</a> and open it in any 3D viewer (on Windows, 3D Viewer opens it).</p></div></section>
+
+<section id="inema"><div class="wrap"><div class="lado"><figure class="foto"><img alt="Close-up of the INEMA lettering raised on top of the base, with raking light showing the raised letters" loading="lazy" src="../assets/r-inema.jpg"/><figcaption>Close-up of the raised lettering, rendered from the base file.</figcaption></figure><div><span class="chip">The brand</span><h2>INEMA raised on the same piece</h2><p>The letters are part of the base itself, 1.2 mm high and 36 mm wide. There is no colour change, glue, or extra part: one filament prints everything.</p><ul><li>The outline is thickened by 0.2 mm on each side (a 0.4 mm thicker stroke) so the letters do not disappear in the print.</li><li>The text is kept away from the front edge: the letters start about 7.6 mm from it.</li><li>The mesh was checked to be closed and a single body after joining.</li></ul></div></div></div></section>
+
+<section id="medidas"><div class="wrap"><span class="chip">Dimensions</span><h2>How much desk space it takes</h2><p class="sub">Front and side views of the actual model, at the same scale. Dimensions come from the CAD file and the module's official drawing.</p>
+<div class="cotas">
+<figure><svg viewBox="-60 -100 120 120" role="img" aria-label="Front view with dimensions: 76 mm base, 46 mm module, 78.4 mm total height">
+  <image href="../assets/r-orto-frente.webp" x="-60" y="-100" width="120" height="120"/>
+  <path class="cota" d="M-38 6v6M38 6v6M-38 9H38"/><text class="cota-t" x="0" y="15.6">76 mm</text>
+  <path class="cota" d="M-23 -80v-6M23 -80v-6M-23 -83H23"/><text class="cota-t" x="0" y="-85.5">46 mm</text>
+  <path class="cota" d="M41 0h8M41 -78.4h8M46 0V-78.4"/><text class="cota-t" x="52" y="-37" transform="rotate(-90 52 -37)">78.4 mm</text>
+</svg><figcaption>Front: base and module width, assembled height.</figcaption></figure>
+<figure><svg viewBox="-46 -100 120 120" role="img" aria-label="Side view with dimensions: 64 mm base depth and 22.5 mm module thickness">
+  <image href="../assets/r-orto-lado.webp" x="-46" y="-100" width="120" height="120"/>
+  <path class="cota" d="M-18 6v6M46 6v6M-18 9H46"/><text class="cota-t" x="14" y="15.6">64 mm</text>
+  <path class="cota" d="M0 -80v-6M22.5 -80v-6M0 -83H22.5"/><text class="cota-t" x="11.25" y="-85.5">22.5 mm</text>
+  <text class="cota-s" x="-10" y="-60">front</text>
+</svg><figcaption>Side: base depth and module thickness. The front is on the left.</figcaption></figure>
+</div>
+<div class="tabela" style="margin-top:18px"><table><thead><tr><th>Dimension</th><th>Value</th><th>Source</th></tr></thead><tbody>
+<tr><td>Complete module</td><td>46 × 46 × 22.5 mm</td><td>Official Waveshare drawing</td></tr>
+<tr><td>Image area</td><td>28.12 × 28.12 mm (240 × 240 pixels)</td><td>Official drawing and module label</td></tr>
+<tr><td>Side clearance</td><td>0.4 mm on each side</td><td>Design; not yet calibrated on the printer</td></tr>
+<tr><td>Clearance behind the module</td><td>0.8 mm</td><td>Design</td></tr>
+<tr><td>Gap for screw heads</td><td>4 mm</td><td>Design</td></tr>
+<tr><td>Base</td><td>76 × 64 × 54 mm (with column)</td><td>STL file</td></tr>
+<tr><td>Cradle</td><td>51.6 × 24 × 31.9 mm</td><td>STL file</td></tr>
+</tbody></table></div></div></section>
+
+<section id="modulo"><div class="wrap"><span class="chip">The module</span><h2>Which version to buy</h2><p>The selected listing is the <a href="https://pt.aliexpress.com/item/1005011874532154.html" rel="noopener" target="_blank">ESP32-S3 with 1.54″ display</a>. The label on the back lists WAVESHARE, an ST7789 display with 240 × 240 pixels, 8 MB of PSRAM, and 16 MB of flash. It comes in four versions:</p>
+<div class="tabela"><table><thead><tr><th>Model</th><th>Touch display</th><th>Battery</th></tr></thead><tbody>
+<tr><td>ESP32-S3-LCD-1.54-EN</td><td>No</td><td>No</td></tr>
+<tr><td>ESP32-S3-LCD-1.54</td><td>No</td><td><span class="sim">Yes</span></td></tr>
+<tr><td>ESP32-S3-Touch-LCD-1.54-EN</td><td><span class="sim">Yes</span></td><td>No</td></tr>
+<tr><td>ESP32-S3-Touch-LCD-1.54</td><td><span class="sim">Yes</span></td><td><span class="sim">Yes</span></td></tr>
+</tbody></table></div>
+<p>The official dimension drawing shows the touch version. Versions without touch or a battery may have cases of a different thickness, and there are no official dimensions for each one. Measure yours before printing the base. Do not confuse it with M5Stack CoreS3 Lite or SpotPear Muma: those are different boards with different dimensions.</p><p><a href="https://docs.waveshare.com/ESP32-S3-Touch-LCD-1.54#dimensions" rel="noopener" target="_blank">View the official documentation and dimensions</a></p>
+<div class="aviso"><svg><use href="#i-alerta"/></svg><p><strong>“DeepSeek AI” in the listing does not prove that AI runs on the board.</strong> This project provides only the physical part. The face program and voice conversation are for a future stage.</p></div></div></section>
+
+<div class="techhead" id="tecnico"><div class="wrap"><span class="chip">Technical details</span><h2>The kit: for printing and assembly</h2><p>You do not need this section to understand what you have read so far. To print, follow this order: material, cradle, test, base, assembly.</p></div></div><div class="techzone">
+
+<section id="material"><div class="wrap"><h2>What you need</h2><p class="sub">Common items only, with no inserts, servos, or special parts.</p>
+<div class="grid g4 bom">
+  <div class="card"><svg class="ico"><use href="#i-tela"/></svg><b class="q">1×</b><h3>ESP32-S3 1.54″ module</h3><p>Any of the four versions; measure the case.</p></div>
+  <div class="card"><svg class="ico"><use href="#i-parafuso"/></svg><b class="q">2×</b><h3>M3 × 16 screw</h3><p>Head up to 3 mm high, such as a DIN 912 hex screw (the gap is 4 mm). Check the length on the workbench.</p></div>
+  <div class="card"><svg class="ico"><use href="#i-porca"/></svg><b class="q">2×</b><h3>M3 nut</h3><p>Standard hex nut.</p></div>
+  <div class="card"><svg class="ico"><use href="#i-bobina"/></svg><b class="q">PETG</b><h3>Filament</h3><p>Initial recommendation, not yet tested. One colour only.</p></div>
+  <div class="card"><svg class="ico"><use href="#i-cubo"/></svg><b class="q">A1</b><h3>3D printer</h3><p>Instructions written for Bambu Lab A1, with a 0.4 mm nozzle.</p></div>
+  <div class="card"><svg class="ico"><use href="#i-baixar"/></svg><b class="q">free</b><h3>Bambu Studio</h3><p>Software that slices the STL for the printer.</p></div>
+  <div class="card"><svg class="ico"><use href="#i-chave"/></svg><b class="q">1×</b><h3>Tool for M3 screws</h3><p>Match it to your screw head.</p></div>
+  <div class="card"><svg class="ico"><use href="#i-regua"/></svg><b class="q">recommended</b><h3>Calipers</h3><p>To measure the case if the cradle feels tight.</p></div>
+</div>
+<p class="mut" style="font-size:.9rem;margin-top:14px">To power the module later, use its USB cable and a standard USB power supply. The stand has no built-in power supply.</p></div></section>
+
+<section id="downloads"><div class="wrap"><h2>Download the cradle first</h2><p>An STL file is a 3D model. It still needs to be sliced for your printer; it is not a ready-to-print instruction file.</p>
+<div class="dl">
+  <a class="card" download href="../downloads/berco-ESTUDO.stl"><span class="ordem">1</span><span><b>Cradle · STL</b><small>51.6 × 24 × 31.9 mm · 5.7 cm³ · 21 KB</small></span></a>
+  <a class="card" download href="../downloads/base-ESTUDO.stl"><span class="ordem">2</span><span><b>Base with INEMA · STL</b><small>76 × 64 × 54 mm · 32.7 cm³ · 33 KB</small></span></a>
+  <a class="card" download href="../downloads/robo-caixa-fixa-teste.zip"><span class="ordem cinza"><svg class="ico" style="margin:0;width:22px;height:22px"><use href="#i-baixar"/></svg></span><span><b>ZIP package</b><small>Both STL files, the 3D assembly, the verification report, and instructions · 20 KB</small></span></a>
+  <a class="card" download href="../downloads/montagem-ESTUDO.glb"><span class="ordem cinza"><svg class="ico" style="margin:0;width:22px;height:22px"><use href="#i-cubo"/></svg></span><span><b>3D assembly · GLB</b><small>For viewing only; not a print file · 25 KB</small></span></a>
+</div>
+<figure class="foto"><img alt="Both parts in their printing orientation on a 256 mm bed: base lying flat with the column upward, and cradle resting on its back" loading="lazy" src="../assets/r-mesa.jpg"/><figcaption>How the STL files sit on the A1's 256 mm bed: the base rests on the bed and the cradle rests on its back. Do not rotate the parts.</figcaption></figure>
+<p class="mut" style="font-size:.9rem">The volume above is for solid parts; with 25% infill, filament use is lower, and Bambu Studio shows the actual amount when you slice. The ZIP does not include G-code or a validated 3MF profile; the instructions inside it are in Portuguese. <a href="../downloads/verificacao.json">View the verification report (JSON)</a>.</p></div></section>
+
+<section id="guia"><div class="wrap"><h2>Slice in Bambu Studio</h2><p class="sub">Slicing turns the model into layers and movements for the printer. You do this on your computer.</p>
+<div class="tabela" style="margin-bottom:28px"><table><thead><tr><th>Setting</th><th>Starting point (not yet tested)</th><th>Where to find it</th></tr></thead><tbody>
+<tr><td>Printer</td><td>Bambu Lab A1, 0.4 mm nozzle</td><td>Top left</td></tr>
+<tr><td>Filament</td><td>PETG from your brand or Generic PETG</td><td>Filament panel</td></tr>
+<tr><td>Layer height</td><td>0.20 mm</td><td>Quality (Quality)</td></tr>
+<tr><td>Walls</td><td>4</td><td>Strength → Wall loops</td></tr>
+<tr><td>Infill</td><td>25%</td><td>Strength → Sparse infill density</td></tr>
+<tr><td>Supports</td><td>On, Auto Normal</td><td>Support (Support)</td></tr>
+<tr><td>Scale</td><td>100%, do not rotate the part</td><td>Virtual bed</td></tr>
+</tbody></table></div>
+<div class="step"><div class="b">1</div><div><h3>Select your printer</h3><p>Open Bambu Studio. Select Bambu Lab A1, a 0.4 mm nozzle, the installed build plate, and the actual filament. If you need to install it, use the <a href="https://bambulab.com/en/download/studio" rel="noopener" target="_blank">official download</a>.</p></div></div>
+<div class="step"><div class="b">2</div><div><h3>Open the cradle only</h3><p>Drag the cradle onto the virtual bed and keep it at 100%. It already rests on its back: do not rotate it to match how it looks when assembled. Expected size: 51.6 × 24 × 31.9 mm. A very different measurement suggests the scale or orientation is wrong.</p></div></div>
+<div class="step"><div class="b">3</div><div><h3>Set the values in the table</h3><p>Walls form the part's outline; infill is its inner structure. Supports are temporary structures that hold sections that would otherwise have no plastic underneath, and are removed afterward. If a field is hidden, turn on Advanced mode. If the printer has PETG loaded, do not select PLA in the software.</p></div></div>
+<div class="step"><div class="b">4</div><div><h3>Click Slice Plate</h3><p>The button may also appear as Slice Plate. In Preview, move through the layers: the first layer should sit entirely on the bed, nothing should start in mid-air, and supports should be in the required places. The software shows the actual time and filament use. If a mesh or orientation warning appears, stop and check before printing.</p></div></div>
+<div class="step"><div class="b">5</div><div><h3>Send it to the A1</h3><p>Using the microSD card: File → Export → Export plate sliced file (File → Export → Export plate sliced file). Copy the file ending in <code>.gcode.3mf</code> to the card, not the STL. On the A1, open the card's file list, choose the part, and check the build plate and filament before starting.</p></div></div>
+<div class="step"><div class="b">6</div><div><h3>Test the cradle before the base</h3><p>Let it cool and remove the supports. With the module turned off, fit it from above without pressing on the display. Check the buttons, USB connector, and sound openings. <strong>If it feels tight, stop:</strong> do not print the base. Measure the case width and thickness with calipers, then <a href="https://github.com/inematds/robo-caixa-fixa/issues/new?title=Cradle%20adjustment%3A%20my%20module%20measurements&body=Version%20purchased%20%28e.g.%20ESP32-S3-Touch-LCD-1.54%29%3A%0ACase%20width%20%28mm%29%3A%0ACase%20height%20%28mm%29%3A%0ACase%20thickness%20%28mm%29%3A%0AWhere%20it%20was%20tight%20or%20loose%3A%0APhoto%20of%20the%20fit%20%28drag%20here%29%3A%0A" rel="noopener" target="_blank">open a cradle adjustment request on GitHub</a> with these measurements (the form already has the fields; you need a free GitHub account). Do not increase the scale: that changes the distance between the screw holes.</p></div></div>
+<div class="step"><div class="b">7</div><div><h3>Only then print the base</h3><p>Open the second STL, resting flat on the bed, and repeat the slicing steps. INEMA is already part of the piece: use one colour.</p></div></div>
+</div></section>
+
+<section id="montagem"><div class="wrap"><h2>Assemble in four steps</h2><p class="sub">Assemble the stand before adding the module. The images show the actual model; screws and nuts are simplified.</p>
+<div class="monta">
+  <figure class="foto"><img alt="Cradle on its own, with the module being lowered from above" loading="lazy" src="../assets/r-passo1.jpg"/><figcaption><b>Test the cradle</b>With the printed cradle detached, fit the module from above. It should slide in without force.</figcaption></figure>
+  <figure class="foto"><img alt="Cradle in front of the base column, with two screws in front and two nuts behind" loading="lazy" src="../assets/r-passo2.jpg"/><figcaption><b>Screw it to the column</b>Place the cradle against the front of the column, pass both M3 × 16 screws through the front, and thread the nuts on from behind.</figcaption></figure>
+  <figure class="foto"><img alt="Assembled stand with the module being lowered from above into the cradle" loading="lazy" src="../assets/r-passo3.jpg"/><figcaption><b>Lower the module</b>Once the stand is secure, lower the module from above until it rests on the bottom of the cradle.</figcaption></figure>
+  <figure class="foto"><img alt="Rear view of the assembled unit showing the nuts on the column" loading="lazy" src="../assets/r-costas.jpg"/><figcaption><b>Check the back</b>The nuts are tight, the display is clear at the front, and the USB cable has no sharp bend. The actual plug position still needs to be checked.</figcaption></figure>
+</div>
+<div class="aviso"><svg><use href="#i-alerta"/></svg><p><strong>The module is held in place by its own weight.</strong> There is no lock: if you lift the assembly by the head or turn the base over, the module will come out. Always carry it by the base.</p></div></div></section>
+
+<section id="verificacao"><div class="wrap"><h2>What was checked on the computer</h2><p class="sub">The CAD generator (<code>cad/gerar.py</code>) runs these tests each time it creates the parts. The numbers come from <a href="../downloads/verificacao.json">verificacao.json</a>.</p>
+<div class="checks">
+  <div class="card"><span class="rotulo ok">passed</span><b class="v">2 of 2</b><h3>Closed meshes, one body each</h3><p>The base and cradle have positive volume and no loose parts.</p></div>
+  <div class="card"><span class="rotulo ok">passed</span><b class="v">0.0 mm³</b><h3>No part overlaps the module</h3><p>Neither the base nor the cradle occupies the 46 × 46 × 22.5 mm box space, and they do not overlap each other.</p></div>
+  <div class="card"><span class="rotulo ok">passed</span><b class="v">5 heights</b><h3>The module lifts out from above</h3><p>When raised by 1, 5, 15, 30, and 60 mm, the module does not hit anything.</p></div>
+  <div class="card"><span class="rotulo ok">passed</span><b class="v">48.72 mm³</b><h3>The test catches real errors</h3><p>With a module 2 mm wider, the test detects the overlap. This shows that it does not approve everything.</p></div>
+  <div class="card"><span class="rotulo ok">passed</span><b class="v">16 × 14 mm</b><h3>USB clearance</h3><p>A clear space beneath the module, reserved for the plug. This is an estimate: the actual plug has not been measured.</p></div>
+  <div class="card"><span class="rotulo">pending</span><b class="v">workbench</b><h3>What only a physical test can confirm</h3><p>Verified slicing, printing, fit with your version, actual USB plug, sound, stability while touching the display, and strength.</p></div>
+</div></div></section>
+
+<section id="roteiro"><div class="wrap"><h2>Project status</h2>
+<div class="phase"><div class="tag">Done</div><div class="d"><strong>Mechanical study 01</strong><span>Two parts designed from the official dimensions, raised INEMA lettering, geometric tests, STL files, and 3D assembly published.</span></div></div>
+<div class="phase"><div class="tag">Now</div><div class="d"><strong>Test the cradle on the workbench</strong><span>Print the cradle and check the fit with the purchased version, USB, buttons, and sound.</span></div></div>
+<div class="phase"><div class="tag">Next</div><div class="d"><strong>Adjustments and final parts</strong><span>Correct clearances, decide whether an anti-fall lock is needed, check stability, and release final STL files with material and print settings.</span></div></div>
+<div class="phase"><div class="tag">Future</div><div class="d"><strong>Face and conversation</strong><span>Program the face on the display. Voice conversation through a home computer or directly through an API is an option for later; no decision has been made yet.</span></div></div>
+</div></section>
+
+<section id="perguntas"><div class="wrap"><h2>Frequently asked questions</h2>
+<details><summary>Do I need to solder or open the module?</summary><p>No. The module fits whole, in its factory case. The only fasteners are the two M3 screws that join the cradle to the base.</p></details>
+<details><summary>Will it fit the M5Stack CoreS3 or another board?</summary><p>No. The cradle was designed for the Waveshare module's 46 × 46 × 22.5 mm case. Other boards have different dimensions.</p></details>
+<details><summary>Can I print it in PLA?</summary><p>PETG is the starting recommendation, and neither material has been tested yet. PLA should print the shape, but clearance and stiffness may differ. Test the small cradle first.</p></details>
+<details><summary>Can the robot talk yet?</summary><p>Not yet. This project provides only the physical stand. The face on the display and voice conversation are the next step, in software.</p></details>
+<details><summary>The cradle is too tight. Should I increase the scale?</summary><p>No. Increasing the scale also changes the position of the holes, so the part will no longer align with the base. Measure the case and <a href="https://github.com/inematds/robo-caixa-fixa/issues/new?title=Cradle%20adjustment%3A%20my%20module%20measurements&body=Version%20purchased%20%28e.g.%20ESP32-S3-Touch-LCD-1.54%29%3A%0ACase%20width%20%28mm%29%3A%0ACase%20height%20%28mm%29%3A%0ACase%20thickness%20%28mm%29%3A%0AWhere%20it%20was%20tight%20or%20loose%3A%0APhoto%20of%20the%20fit%20%28drag%20here%29%3A%0A" rel="noopener" target="_blank">open a cradle adjustment request</a> with the measurements.</p></details>
+<details><summary>Can the base and cradle be different colours?</summary><p>Yes, they are separate parts. The renders show a yellow base and graphite cradle. The INEMA lettering on the base is the same colour as the base itself.</p></details>
+</div></section>
+</div>
+
+<footer><div class="wrap"><p><span class="pill">Blender</span><span class="pill">manifold3d</span><span class="pill">trimesh</span><span class="pill">Bambu Studio</span></p><p>Robô caixa fixa · open research and education project</p><p><a href="https://github.com/inematds/robo-caixa-fixa">Code and files</a> · <a href="https://inema.club">INEMA.CLUB</a> · <a href="https://inema.pro">PRO</a></p></div></footer>
+<script>(function(){const b=document.body,t=document.getElementById('themeToggle'),k='robo-caixa-fixa-theme';try{if(localStorage.getItem(k)==='light'){b.classList.add('light');t.textContent='🌙'}}catch(e){}t.addEventListener('click',function(){const light=b.classList.toggle('light');t.textContent=light?'🌙':'☀️';try{localStorage.setItem(k,light?'light':'dark')}catch(e){}})})();</script>
+</body></html>

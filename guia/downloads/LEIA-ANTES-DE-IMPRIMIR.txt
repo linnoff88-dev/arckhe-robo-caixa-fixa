@@ -1,0 +1,28 @@
+ROBÔ CAIXA FIXA — PACOTE DE TESTE
+
+Comece pelo berco-ESTUDO.stl. Não imprima a base antes de testar o encaixe no módulo real.
+
+CONTEÚDO DESTE ZIP
+- berco-ESTUDO.stl: peça que segura o módulo.
+- base-ESTUDO.stl: base e coluna com INEMA em relevo, na mesma cor.
+- montagem-ESTUDO.glb: montagem 3D para visualizar; não é arquivo para imprimir.
+- verificacao.json: testes geométricos, medidas e limites.
+- LEIA-ANTES-DE-IMPRIMIR.txt: estas instruções.
+
+COMO USAR
+1. Extraia o ZIP no computador.
+2. Abra Bambu Studio e selecione A1, bico 0,4 mm, placa e filamento reais.
+3. Importe somente berco-ESTUDO.stl e mantenha escala 100%. A posição de impressão já está aplicada. Dimensões: 51,6 × 24 × 31,9 mm.
+4. Configuração inicial proposta, não validada: PETG, camada 0,20 mm, 4 paredes, preenchimento 25%. Na aba Suporte, Normal automático como ponto de partida.
+5. Fatie e revise as camadas, avisos e suportes. Não imprima antes de resolver alertas.
+6. Exporte o arquivo FATIADO pelo Bambu Studio para o cartão microSD, ou envie pela conexão da sua impressora. STL não é arquivo fatiado.
+7. Depois de esfriar, remova suportes e teste o módulo desligado, sem forçar. Se apertar, pare: não imprima a base, meça a carcaça e peça ajuste do berço.
+8. Só após conferir encaixe, cabo, botões e áudio, fatie base-ESTUDO.stl apoiada no piso. Base: 76 × 64 × 54 mm.
+9. União proposta: 2 parafusos M3 × 16 e 2 porcas M3 comuns, a conferir na bancada; monte antes de inserir o módulo.
+
+LIMITES
+Protótipo: sem impressão, fatiamento, acústica, resistência ou estabilidade validados fisicamente. O módulo fica retido por gravidade: não levante segurando na cabeça. O desenho usa o envelope de carcaça 46 × 46 × 22,5 mm; confirme sua variante.
+Este pacote não contém G-code nem perfil 3MF validado. Não precisa de Python para abrir os STL. Software de rosto/conversa por IA não está incluído.
+
+GUIA COMPLETO
+https://inematds.github.io/robo-caixa-fixa/guia/

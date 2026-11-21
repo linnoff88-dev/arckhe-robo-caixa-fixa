@@ -1,0 +1,41 @@
+{
+  "item_id": "1005011874532154",
+  "url": "https://pt.aliexpress.com/item/1005011874532154.html",
+  "escolha_usuario": "VOU USAR ESTE NA CAIXA",
+  "titulo_confirmado_html": "Placa ESP32-S3 com LCD 1.54 e IA DeepSeek",
+  "status": "escolhida; variante, medidas e pinagem pendentes",
+  "nao_confirmado": [
+    "variante que sera comprada",
+    "dimensoes e fixacao",
+    "pinagem confirmada em esquema",
+    "capacidade da bateria",
+    "firmware e dependencia de nuvem"
+  ],
+  "variantes_confirmadas_imagem_vendedor": [
+    {
+      "modelo": "ESP32-S3-LCD-1.54-EN",
+      "touch": false,
+      "bateria": false
+    },
+    {
+      "modelo": "ESP32-S3-LCD-1.54",
+      "touch": false,
+      "bateria": true
+    },
+    {
+      "modelo": "ESP32-S3-Touch-LCD-1.54-EN",
+      "touch": true,
+      "bateria": false
+    },
+    {
+      "modelo": "ESP32-S3-Touch-LCD-1.54",
+      "touch": true,
+      "bateria": true
+    }
+  ],
+  "tela_anunciada": "1,54 polegadas nas quatro variantes; rótulo traseiro anuncia 240 x 240 pixels",
+  "evidencias": {
+    "variantes": "https://ae-pic-a1.aliexpress-media.com/kf/Se60b381baf7449e1903c227f71cc32c5y.jpg",
+    "rotulo": "https://ae-pic-a1.aliexpress-media.com/kf/S5d00ee8240c647c3a428b0890220b74dN.jpg"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "status": "estudo; não liberado para impressão final",
+  "marca": {
+    "texto": "INEMA",
+    "largura_nominal_mm": 36,
+    "engrossamento_contorno_por_lado_mm": 0.2,
+    "relevo_mm": 1.2,
+    "recuo_adicional_mm": 4,
+    "centro_y_mm": -6.5,
+    "posicao": "topo frontal da base",
+    "cor": "mesmo filamento da base; sólido único"
+  },
+  "modulo_mm": [
+    46,
+    22.5,
+    46
+  ],
+  "modulo_dimensao_fonte": "https://docs.waveshare.com/ESP32-S3-Touch-LCD-1.54#dimensions",
+  "folga_lateral_por_lado_mm": 0.4,
+  "folga_traseira_mm": 0.8,
+  "fixacao": "2 parafusos M3 x 16 e 2 porcas M3; confirmar na bancada",
+  "pecas": {
+    "base": {
+      "malha_fechada": true,
+      "volume_positivo": true,
+      "corpos": 1,
+      "dimensoes_impressao_mm": [
+        76.0,
+        64.0,
+        54.0
+      ],
+      "volume_cm3": 32.66,
+      "geometria_basica_ok": true
+    },
+    "berco": {
+      "malha_fechada": true,
+      "volume_positivo": true,
+      "corpos": 1,
+      "dimensoes_impressao_mm": [
+        51.6,
+        24.0,
+        31.9
+      ],
+      "volume_cm3": 5.67,
+      "geometria_basica_ok": true
+    }
+  },
+  "checagens": {
+    "interferencia_modulo_base_mm3": 0.0,
+    "interferencia_modulo_berco_mm3": 0.0,
+    "interferencia_pecas_mm3": -0.0,
+    "negativo_modulo_largo_mm3": 48.72,
+    "retirada_vertical_5_posicoes": "passou para envelope retangular do módulo",
+    "corredor_usb_base_mm3": 0.0,
+    "corredor_usb_berco_mm3": 0.0
+  },
+  "limites": [
+    "Sem teste físico ou fatiamento.",
+    "Plugue USB, raio do cabo, aba de proteção touch, áudio e pressão sobre o módulo precisam de conferência física.",
+    "Retenção vertical por gravidade: módulo sai por cima; não transportar segurando pelo módulo.",
+    "Posição dos microfones e do alto-falante não está cotada; laterais superiores ficam abertas, mas a acústica não foi validada.",
+    "Sem análise de resistência, tombamento sob toque ou suporte do fatiador."
+  ]
+}

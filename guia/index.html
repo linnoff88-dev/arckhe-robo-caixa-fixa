@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<!-- TEMPLATE projetos-landing-guia. Troque Robô caixa fixa e o conteudo. NAO reescreva o CSS.
+     TRILINGUE: este arquivo e a versao PT (guia/index.html). As versoes guia/en/index.html e
+     guia/es/index.html sao copias traduzidas: lang="en"/"es", seletor com a.on no idioma,
+     hrefs do seletor ../ e ../es/ (ou ../en/), e imagens assets/ -> ../assets/. -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Robô caixa fixa — seu módulo com tela vira um robô de mesa</title>
+<meta content="Suporte impresso em 3D de duas peças para o módulo ESP32-S3 com tela de 1,54″: renders do modelo real, modelo 3D, medidas, STL, fatiamento na A1 e montagem." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#FACC15; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#a16207; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:rgba(250,204,21,.12)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(250,204,21,.16),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(250,204,21,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div,.card{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;height:auto;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+</style>
+<link href="https://inematds.github.io/robo-caixa-fixa/guia/" rel="canonical"/>
+<link href="https://inematds.github.io/robo-caixa-fixa/guia/" hreflang="pt-BR" rel="alternate"/>
+<link href="https://inematds.github.io/robo-caixa-fixa/guia/en/" hreflang="en" rel="alternate"/>
+<link href="https://inematds.github.io/robo-caixa-fixa/guia/es/" hreflang="es" rel="alternate"/>
+<meta content="https://inematds.github.io/robo-caixa-fixa/guia/assets/banner.jpg" property="og:image"/>
+<style>
+  .techhead{background:var(--bg2);border-top:1px solid var(--amb);padding:42px 0}
+  .techzone{background:var(--bg2)}
+  .techzone .card{background:var(--card)}
+  h2{scroll-margin-top:90px}
+  section p,section li{max-width:74ch}
+  li{margin:.5em 0}
+  :focus-visible{outline:3px solid var(--amb);outline-offset:4px}
+  body{overflow-wrap:break-word}
+  figure{margin:0}
+  .foto{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#050507}
+  .foto img{display:block;width:100%;height:auto}
+  .foto figcaption{padding:10px 14px;font-size:.86rem;color:var(--mut);background:var(--card);border-top:1px solid var(--line)}
+  .fotobig{margin-top:26px}
+  .numeros{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border-bottom:1px solid var(--line)}
+  .numeros div{background:var(--bg);padding:22px 12px;text-align:center}
+  .numeros b{display:block;font-family:Sora;font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:var(--amb);letter-spacing:-.02em}
+  .numeros span{font-size:.82rem;color:var(--mut)}
+  @media(max-width:820px){.numeros{grid-template-columns:repeat(3,1fr)}}
+  .lado{display:grid;grid-template-columns:1.35fr 1fr;gap:28px;align-items:start}
+  @media(max-width:860px){.lado{grid-template-columns:1fr}}
+  .legenda{list-style:none;padding:0;margin:0;counter-reset:l}
+  .legenda li{display:grid;grid-template-columns:34px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);margin:0}
+  .legenda li:last-child{border:none}
+  .legenda li::before{counter-increment:l;content:counter(l);width:30px;height:30px;border-radius:8px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+  .legenda b{display:block;font-family:Sora;font-size:.98rem}
+  .legenda span{color:var(--mut);font-size:.9rem}
+  .viewer{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(circle at 50% 35%,#2a2418,#0b0b0e 70%);aspect-ratio:16/10}
+  .viewer model-viewer{width:100%;height:100%;--poster-color:transparent}
+  .viewer .dica{position:absolute;left:14px;bottom:12px;font-size:.8rem;color:#c9c9d2;background:rgba(0,0,0,.55);padding:.35em .7em;border-radius:999px;pointer-events:none}
+  @media(max-width:540px){.viewer{aspect-ratio:4/5}}
+  .cotas{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.cotas{grid-template-columns:1fr}}
+  .cotas figure{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:10px}
+  .cotas svg{display:block;width:100%;height:auto}
+  .cotas figcaption{font-size:.86rem;color:var(--mut);padding:6px 6px 2px}
+  .cota{stroke:var(--amb);stroke-width:.35;fill:none}
+  .cota-t{fill:var(--txt);font:600 3.6px Sora,sans-serif;text-anchor:middle}
+  .cota-s{fill:var(--mut);font:500 3px Inter,sans-serif;text-anchor:middle}
+  table{width:100%;border-collapse:collapse;font-size:.92rem;margin:14px 0}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-family:Sora;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);font-weight:600}
+  .tabela{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+  .tabela table{margin:0}
+  .tabela tr:last-child td{border-bottom:none}
+  .sim{color:var(--amb);font-weight:600}
+  .ico{width:28px;height:28px;color:var(--amb);margin-bottom:.55em;display:block}
+  .bom .card b.q{float:right;font-family:Sora;color:var(--amb)}
+  .dl{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:22px 0}
+  @media(max-width:680px){.dl{grid-template-columns:1fr}}
+  .dl a.card{display:flex;gap:14px;align-items:center;color:var(--txt);transition:border-color .2s}
+  .dl a.card:hover{border-color:var(--amb)}
+  .dl .ordem{flex:0 0 44px;height:44px;border-radius:12px;background:var(--amb);color:#1a1206;font:800 1.15rem Sora;display:flex;align-items:center;justify-content:center}
+  .dl .ordem.cinza{background:var(--bg2);color:var(--mut);border:1px solid var(--line)}
+  .dl small{display:block;color:var(--mut);font-size:.84rem}
+  .monta{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;counter-reset:m}
+  @media(max-width:680px){.monta{grid-template-columns:1fr}}
+  .monta figure{position:relative}
+  .monta figure::before{counter-increment:m;content:counter(m);position:absolute;top:12px;left:12px;width:36px;height:36px;border-radius:10px;background:var(--amb);color:#1a1206;font:800 1.05rem Sora;display:flex;align-items:center;justify-content:center;z-index:2}
+  .monta figcaption b{display:block;color:var(--txt);font-family:Sora;font-size:.98rem;margin-bottom:.2em}
+  .aviso{display:flex;gap:14px;padding:18px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--amb);border-radius:12px;margin-top:22px}
+  .aviso svg{flex:0 0 24px;width:24px;height:24px;color:var(--amb)}
+  .aviso p{margin:0}
+  .checks{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:680px){.checks{grid-template-columns:1fr}}
+  .checks .card b.v{display:block;font:800 1.5rem Sora;color:var(--amb);margin-bottom:.2em}
+  .rotulo{display:inline-block;font:600 .75rem Sora;letter-spacing:.08em;text-transform:uppercase;padding:.2em .6em;border-radius:999px;border:1px solid var(--line);color:var(--mut);margin-bottom:.6em}
+  .rotulo.ok{color:var(--amb);border-color:var(--amb)}
+  details{border-bottom:1px solid var(--line);padding:14px 0}
+  details summary{cursor:pointer;font-family:Sora;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+  details summary::after{content:"+";color:var(--amb);font-weight:800}
+  details[open] summary::after{content:"–"}
+  details p{color:var(--mut);margin:.7em 0 0}
+  .step img{border-radius:12px;border:1px solid var(--line);display:block;width:100%;max-width:640px;height:auto;margin:.4em 0 .8em}
+  body.light .btn,body.light .step .b,body.light .legenda li::before,body.light .dl .ordem:not(.cinza),body.light .monta figure::before{background:#FACC15;color:#1a1206}
+  body.light .numeros b,body.light .checks .card b.v{color:#854d0e}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+</head>
+<body>
+<svg aria-hidden="true" style="display:none">
+  <symbol id="i-alerta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+  <symbol id="i-cubo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.7z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></symbol>
+  <symbol id="i-tela" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="16" rx="2.5"/><rect x="7.5" y="6.5" width="9" height="9" rx="1"/><path d="M10 22h4"/></symbol>
+  <symbol id="i-parafuso" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8v4H8z"/><path d="M10 7v13l2 2 2-2V7"/><path d="M10 11l4-1M10 14l4-1M10 17l4-1"/></symbol>
+  <symbol id="i-porca" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h10l5 8.5-5 8.5H7L2 12z"/><circle cx="12" cy="12" r="3.5"/></symbol>
+  <symbol id="i-bobina" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v6M21 12h-6"/></symbol>
+  <symbol id="i-regua" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 17 3l4 4L7 21z"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2"/></symbol>
+  <symbol id="i-chave" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5 5L21 13l-8 8-3-3 6.3-6.3"/><path d="M3 21l6-6"/></symbol>
+  <symbol id="i-baixar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 21h16"/></symbol>
+</svg>
+<nav><div class="wrap"><a class="brand" href="#top">🤖 Robô caixa fixa</a><span class="sep">|</span><span class="clubpro"><a class="inema" href="https://inema.club" rel="noopener" target="_blank">INEMA.CLUB</a><span class="sep">-</span><a class="pro" href="https://inema.pro" rel="noopener" target="_blank">PRO</a></span><div class="links"><a class="sec" href="#projeto">O projeto</a><a class="sec" href="#modelo3d">Modelo 3D</a><a class="sec" href="#medidas">Medidas</a><a class="sec" href="#tecnico">Kit (técnico)</a><span class="lang"><a class="on" href="./">PT</a><a href="en/">EN</a><a href="es/">ES</a></span><button aria-label="Alternar tema" class="tgl" id="themeToggle">☀️</button><a href="https://github.com/inematds/robo-caixa-fixa">GitHub</a></div></div></nav>
+
+<header class="hero" id="top"><div class="glow"></div><div class="wrap"><div><span class="chip">Projeto aberto · impressão 3D · ESP32-S3</span><h1>Seu módulo com tela vira a cabeça de um <span class="amb">robô de mesa.</span></h1><p class="lead">Robô impresso costuma travar em motor, engrenagem e solda. No Robô caixa fixa a cabeça é fixa: o módulo entra inteiro num suporte de duas peças, e você testa o encaixe numa peça pequena antes de gastar filamento na base. Os arquivos de estudo já servem para imprimir o berço de teste; o rosto na tela vem depois, em software.</p><div class="cta"><a class="btn" href="#video">Entender em 2 minutos</a><a class="btn ghost" href="#downloads">Baixar os STL</a></div></div><figure><img alt="Banner do Robô caixa fixa: o suporte amarelo com INEMA em relevo segurando o módulo de tela quadrada, ao lado do título Seu robô de mesa, sem motor e sem solda" src="assets/banner.jpg"/><figcaption style="padding:8px 12px;font-size:.8rem;color:var(--mut);background:var(--card)">Ilustração gerada por IA. O suporte ainda não foi impresso; as imagens do modelo real estão abaixo.</figcaption></figure></div></header>
+
+<div class="numeros" aria-label="O projeto em números">
+  <div><b>2</b><span>peças impressas</span></div>
+  <div><b>2 + 2</b><span>parafusos M3 e porcas</span></div>
+  <div><b>0</b><span>motores e soldas</span></div>
+  <div><b>76 × 64</b><span>mm de base</span></div>
+  <div><b>78,4</b><span>mm de altura montado</span></div>
+  <div><b>38,3</b><span>cm³ de volume das peças</span></div>
+</div>
+
+<section class="resumo" id="resumo"><div class="wrap"><h2>Em resumo</h2><p>Quem quer um robô de mesa costuma esbarrar na parte mecânica: servos, engrenagens e fios. O Robô caixa fixa é um suporte impresso em 3D que transforma o módulo Waveshare ESP32-S3 com tela de 1,54 polegadas numa cabeça fixa sobre uma base. O módulo fica inteiro, com carcaça e eletrônica de fábrica. Você precisa de uma impressora 3D, do Bambu Studio, de filamento, do módulo e de dois parafusos com porca. O desenho foi conferido no computador, mas ainda não foi impresso. O rosto na tela e a conversa por IA ainda não existem: este guia cobre só o suporte.</p><figure class="foto fotobig"><img alt="Banner com as peças do projeto: módulo inteiro, berço de teste, base com INEMA, dois parafusos M3, fatiar na A1 e montagem 3D" loading="lazy" src="assets/banner-grade.jpg"/><figcaption><strong>Ilustração gerada por IA:</strong> nenhuma peça foi impressa ainda. As formas exatas estão nas imagens do modelo real logo abaixo.</figcaption></figure></div></section>
+
+<!-- VIDEO: projeto PT -->
+<section id="video"><div class="wrap"><span class="chip">Vídeo</span><h2>Entenda em 2 minutos</h2><p class="sub">Vídeo em português. Protótipo: o suporte ainda não foi impresso, e o rosto e a conversa por IA ainda não existem.</p><video controls preload="none" playsinline poster="assets/video-poster.jpg" style="display:block;width:100%;aspect-ratio:16/9;border-radius:14px;background:#000"><source src="https://github.com/inematds/robo-caixa-fixa/releases/download/video-v1.0.0/robo-caixa-fixa.mp4" type="video/mp4"/></video><p><a href="https://www.youtube.com/watch?v=BEY94Ag9BWk">Assistir no YouTube</a> · <a href="https://github.com/inematds/robo-caixa-fixa/releases/download/video-v1.0.0/robo-caixa-fixa.srt">SRT · PT</a></p></div></section>
+<!-- /VIDEO -->
+
+<section id="projeto"><div class="wrap"><span class="chip">O projeto</span><h2>Uma cabeça fixa, o módulo inteiro</h2><p class="sub">A tela, o áudio e a bateria opcional continuam dentro da carcaça original. O suporte só segura o conjunto: a frente fica livre para o toque e os botões de cima continuam à mão.</p>
+<figure class="foto"><img alt="Render do modelo real: base amarela com INEMA em relevo, coluna, berço grafite e o módulo quadrado de tela preta encaixado" loading="lazy" src="assets/r-conjunto.jpg"/><figcaption>Render do arquivo CAD real. Base e berço são as peças que você imprime. O módulo aparece simplificado (caixa de 46 × 46 × 22,5 mm), sem cada botão e furo.</figcaption></figure>
+<div class="grid g3" style="margin-top:18px">
+  <div class="card"><svg class="ico"><use href="#i-cubo"/></svg><h3>Base com coluna</h3><p>Chapa de 76 × 64 mm com uma coluna atrás; 54 mm de altura no total. INEMA em relevo na frente, na mesma cor e na mesma peça.</p></div>
+  <div class="card"><svg class="ico"><use href="#i-cubo"/></svg><h3>Berço</h3><p>Peça pequena (51,6 × 24 × 31,9 mm) que abraça o módulo pelas laterais e por baixo. É a primeira a imprimir, para testar o encaixe.</p></div>
+  <div class="card"><svg class="ico"><use href="#i-tela"/></svg><h3>Módulo de fábrica</h3><p>Waveshare ESP32-S3 com tela de 1,54″. Entra e sai por cima, sem desmontar e sem soldar.</p></div>
+</div>
+<div class="grid g2" style="margin-top:18px">
+  <figure class="foto"><img alt="Render de frente: a tela do módulo livre, o berço segurando pelas laterais" loading="lazy" src="assets/r-frente.jpg"/><figcaption>De frente: a tela fica inteira à vista, sem moldura do suporte por cima.</figcaption></figure>
+  <figure class="foto"><img alt="Render de trás: coluna da base com as duas porcas M3 aparentes" loading="lazy" src="assets/r-costas.jpg"/><figcaption>De trás: as duas porcas M3 ficam nas costas da coluna.</figcaption></figure>
+</div></div></section>
+
+<section id="explodida"><div class="wrap"><span class="chip">Como se encaixa</span><h2>Cinco partes, nenhuma cola</h2><p class="sub">A vista explodida separa as partes na ordem em que você monta. Os parafusos atravessam o berço e a coluna; a cabeça de cada um fica escondida atrás do módulo.</p>
+<div class="lado"><figure class="foto"><img alt="Vista explodida: módulo acima, berço à frente da coluna, dois parafusos à frente do berço e duas porcas atrás da coluna" loading="lazy" src="assets/r-explodida.jpg"/><figcaption>Vista explodida do modelo real. Parafusos e porcas representados de forma simples.</figcaption></figure>
+<ol class="legenda">
+  <li><div><b>Módulo ESP32-S3 com tela</b><span>Desce por cima até apoiar no berço. Fica preso pelo próprio peso.</span></div></li>
+  <li><div><b>Berço (imprimir primeiro)</b><span>Abraça as laterais e o fundo do módulo, com 0,4 mm de folga de cada lado.</span></div></li>
+  <li><div><b>2 parafusos M3 × 16</b><span>Entram pela frente do berço. A cabeça fica num vão de 4 mm atrás do módulo.</span></div></li>
+  <li><div><b>Base com coluna e INEMA</b><span>A coluna recebe o berço; os dois furos ficam alinhados com os do berço.</span></div></li>
+  <li><div><b>2 porcas M3</b><span>Apertam o conjunto pelas costas da coluna.</span></div></li>
+</ol></div></div></section>
+
+<section id="modelo3d"><div class="wrap"><span class="chip">Modelo 3D</span><h2>Gire o robô na sua mão</h2><p class="sub">Este é o arquivo de montagem do projeto (o mesmo GLB do download). Arraste para girar e use dois dedos ou a roda do mouse para aproximar. Cores do arquivo: base amarela, berço cinza, módulo branco, área da tela em azul.</p>
+<div class="viewer"><model-viewer src="downloads/montagem-ESTUDO.glb" orientation="0deg -90deg 0deg" poster="assets/r-conjunto.jpg" alt="Montagem 3D interativa do Robô caixa fixa" camera-controls touch-action="pan-y" auto-rotate auto-rotate-delay="1500" rotation-per-second="18deg" camera-orbit="150deg 72deg auto" shadow-intensity="1" exposure="1.05" interaction-prompt="none"></model-viewer><span class="dica">Arraste para girar</span></div>
+<p class="mut" style="font-size:.88rem">Se o modelo não aparecer, <a download href="downloads/montagem-ESTUDO.glb">baixe o GLB</a> e abra em qualquer visualizador 3D (no Windows, o Visualizador 3D já abre).</p></div></section>
+
+<section id="inema"><div class="wrap"><div class="lado"><figure class="foto"><img alt="Close do relevo INEMA no topo da base, com luz rasante mostrando as letras em alto-relevo" loading="lazy" src="assets/r-inema.jpg"/><figcaption>Close do relevo, render do arquivo da base.</figcaption></figure><div><span class="chip">A marca</span><h2>INEMA em relevo, na mesma peça</h2><p>As letras saem da própria base, com 1,2 mm de altura e 36 mm de largura. Não há troca de cor, colagem nem peça extra: um único filamento imprime tudo.</p><ul><li>Contorno engrossado 0,2 mm de cada lado (traço 0,4 mm mais grosso) para a letra não sumir na impressão.</li><li>Texto afastado da borda da frente: as letras começam a cerca de 7,6 mm dela.</li><li>Malha conferida como fechada e de um corpo só depois da junção.</li></ul></div></div></div></section>
+
+<section id="medidas"><div class="wrap"><span class="chip">Medidas</span><h2>Quanto ocupa na mesa</h2><p class="sub">Vistas de frente e de lado do modelo real, na mesma escala. As medidas vêm do arquivo CAD e do desenho oficial do módulo.</p>
+<div class="cotas">
+<figure><svg viewBox="-60 -100 120 120" role="img" aria-label="Vista de frente com cotas: base de 76 mm, módulo de 46 mm, altura total de 78,4 mm">
+  <image href="assets/r-orto-frente.webp" x="-60" y="-100" width="120" height="120"/>
+  <path class="cota" d="M-38 6v6M38 6v6M-38 9H38"/><text class="cota-t" x="0" y="15.6">76 mm</text>
+  <path class="cota" d="M-23 -80v-6M23 -80v-6M-23 -83H23"/><text class="cota-t" x="0" y="-85.5">46 mm</text>
+  <path class="cota" d="M41 0h8M41 -78.4h8M46 0V-78.4"/><text class="cota-t" x="52" y="-37" transform="rotate(-90 52 -37)">78,4 mm</text>
+</svg><figcaption>Frente: largura da base e do módulo, altura montado.</figcaption></figure>
+<figure><svg viewBox="-46 -100 120 120" role="img" aria-label="Vista de lado com cotas: base de 64 mm de profundidade e módulo de 22,5 mm de espessura">
+  <image href="assets/r-orto-lado.webp" x="-46" y="-100" width="120" height="120"/>
+  <path class="cota" d="M-18 6v6M46 6v6M-18 9H46"/><text class="cota-t" x="14" y="15.6">64 mm</text>
+  <path class="cota" d="M0 -80v-6M22.5 -80v-6M0 -83H22.5"/><text class="cota-t" x="11.25" y="-85.5">22,5 mm</text>
+  <text class="cota-s" x="-10" y="-60">frente</text>
+</svg><figcaption>Lado: profundidade da base e espessura do módulo. A frente fica à esquerda.</figcaption></figure>
+</div>
+<div class="tabela" style="margin-top:18px"><table><thead><tr><th>Medida</th><th>Valor</th><th>De onde vem</th></tr></thead><tbody>
+<tr><td>Módulo completo</td><td>46 × 46 × 22,5 mm</td><td>Desenho oficial Waveshare</td></tr>
+<tr><td>Área da imagem</td><td>28,12 × 28,12 mm (240 × 240 pixels)</td><td>Desenho oficial e rótulo do módulo</td></tr>
+<tr><td>Folga nas laterais</td><td>0,4 mm de cada lado</td><td>Projeto; ainda não calibrada na impressora</td></tr>
+<tr><td>Folga atrás do módulo</td><td>0,8 mm</td><td>Projeto</td></tr>
+<tr><td>Vão para a cabeça dos parafusos</td><td>4 mm</td><td>Projeto</td></tr>
+<tr><td>Base</td><td>76 × 64 × 54 mm (com coluna)</td><td>Arquivo STL</td></tr>
+<tr><td>Berço</td><td>51,6 × 24 × 31,9 mm</td><td>Arquivo STL</td></tr>
+</tbody></table></div></div></section>
+
+<section id="modulo"><div class="wrap"><span class="chip">O módulo</span><h2>Qual versão comprar</h2><p>O anúncio escolhido é o <a href="https://pt.aliexpress.com/item/1005011874532154.html" rel="noopener" target="_blank">ESP32-S3 com tela de 1,54″</a>. O rótulo de trás traz WAVESHARE, tela ST7789 de 240 × 240 pixels, 8 MB de PSRAM e 16 MB de flash. Ele vem em quatro versões:</p>
+<div class="tabela"><table><thead><tr><th>Modelo</th><th>Toque na tela</th><th>Bateria</th></tr></thead><tbody>
+<tr><td>ESP32-S3-LCD-1.54-EN</td><td>Não</td><td>Não</td></tr>
+<tr><td>ESP32-S3-LCD-1.54</td><td>Não</td><td><span class="sim">Sim</span></td></tr>
+<tr><td>ESP32-S3-Touch-LCD-1.54-EN</td><td><span class="sim">Sim</span></td><td>Não</td></tr>
+<tr><td>ESP32-S3-Touch-LCD-1.54</td><td><span class="sim">Sim</span></td><td><span class="sim">Sim</span></td></tr>
+</tbody></table></div>
+<p>O desenho oficial com medidas mostra a versão com toque. As versões sem toque ou sem bateria podem ter carcaça de outra espessura, e não há medida oficial de cada uma. Meça a sua antes de imprimir a base. Não confunda com M5Stack CoreS3 Lite nem com SpotPear Muma: são outras placas, com outras medidas.</p><p><a href="https://docs.waveshare.com/ESP32-S3-Touch-LCD-1.54#dimensions" rel="noopener" target="_blank">Ver a documentação e as medidas oficiais</a></p>
+<div class="aviso"><svg><use href="#i-alerta"/></svg><p><strong>“IA DeepSeek” no anúncio não prova IA rodando na placa.</strong> Este projeto entrega só a parte física. O programa do rosto e a conversa por voz ficam para uma etapa futura.</p></div></div></section>
+
+<div class="techhead" id="tecnico"><div class="wrap"><span class="chip">Parte técnica</span><h2>O kit: para quem vai imprimir e montar</h2><p>Você não precisa desta parte para entender o que está acima. Para imprimir, siga a ordem: material, berço, teste, base, montagem.</p></div></div><div class="techzone">
+
+<section id="material"><div class="wrap"><h2>O que você precisa</h2><p class="sub">Tudo comum, sem inserto, servo ou peça especial.</p>
+<div class="grid g4 bom">
+  <div class="card"><svg class="ico"><use href="#i-tela"/></svg><b class="q">1×</b><h3>Módulo ESP32-S3 1,54″</h3><p>Qualquer uma das quatro versões; meça a carcaça.</p></div>
+  <div class="card"><svg class="ico"><use href="#i-parafuso"/></svg><b class="q">2×</b><h3>Parafuso M3 × 16</h3><p>Cabeça de até 3 mm de altura, como o allen DIN 912 (o vão tem 4 mm). Confira o comprimento na bancada.</p></div>
+  <div class="card"><svg class="ico"><use href="#i-porca"/></svg><b class="q">2×</b><h3>Porca M3</h3><p>Porca sextavada comum.</p></div>
+  <div class="card"><svg class="ico"><use href="#i-bobina"/></svg><b class="q">PETG</b><h3>Filamento</h3><p>Proposta inicial, ainda sem teste. Uma cor só.</p></div>
+  <div class="card"><svg class="ico"><use href="#i-cubo"/></svg><b class="q">A1</b><h3>Impressora 3D</h3><p>Guia escrito para Bambu Lab A1, bico de 0,4 mm.</p></div>
+  <div class="card"><svg class="ico"><use href="#i-baixar"/></svg><b class="q">grátis</b><h3>Bambu Studio</h3><p>Programa que fatia o STL para a impressora.</p></div>
+  <div class="card"><svg class="ico"><use href="#i-chave"/></svg><b class="q">1×</b><h3>Chave para M3</h3><p>Do tipo da cabeça do seu parafuso.</p></div>
+  <div class="card"><svg class="ico"><use href="#i-regua"/></svg><b class="q">ideal</b><h3>Paquímetro</h3><p>Para medir a carcaça se o berço apertar.</p></div>
+</div>
+<p class="mut" style="font-size:.9rem;margin-top:14px">Para ligar o módulo depois, use o cabo USB dele e uma fonte USB comum. O suporte não traz alimentação própria.</p></div></section>
+
+<section id="downloads"><div class="wrap"><h2>Baixe primeiro o berço</h2><p>Arquivo STL é o modelo 3D. Ele ainda precisa ser fatiado para a sua impressora; não é a instrução de impressão pronta.</p>
+<div class="dl">
+  <a class="card" download href="downloads/berco-ESTUDO.stl"><span class="ordem">1</span><span><b>Berço · STL</b><small>51,6 × 24 × 31,9 mm · 5,7 cm³ · 21 KB</small></span></a>
+  <a class="card" download href="downloads/base-ESTUDO.stl"><span class="ordem">2</span><span><b>Base com INEMA · STL</b><small>76 × 64 × 54 mm · 32,7 cm³ · 33 KB</small></span></a>
+  <a class="card" download href="downloads/robo-caixa-fixa-teste.zip"><span class="ordem cinza"><svg class="ico" style="margin:0;width:22px;height:22px"><use href="#i-baixar"/></svg></span><span><b>Pacote ZIP</b><small>Os dois STL, a montagem 3D, a verificação e as instruções · 20 KB</small></span></a>
+  <a class="card" download href="downloads/montagem-ESTUDO.glb"><span class="ordem cinza"><svg class="ico" style="margin:0;width:22px;height:22px"><use href="#i-cubo"/></svg></span><span><b>Montagem 3D · GLB</b><small>Só para ver; não é arquivo de impressão · 25 KB</small></span></a>
+</div>
+<figure class="foto"><img alt="As duas peças na orientação de impressão sobre uma mesa de 256 mm: base deitada com a coluna para cima e berço apoiado pelas costas" loading="lazy" src="assets/r-mesa.jpg"/><figcaption>Como os STL chegam na mesa de 256 mm da A1: a base apoiada no piso e o berço apoiado pelas costas. Não gire as peças.</figcaption></figure>
+<p class="mut" style="font-size:.9rem">O volume acima é o das peças cheias; com 25% de preenchimento o gasto de filamento é menor, e o Bambu Studio mostra o valor real ao fatiar. O ZIP não traz G-code nem perfil 3MF validado; as instruções dentro dele estão em português. <a href="downloads/verificacao.json">Ver o relatório da verificação (JSON)</a>.</p></div></section>
+
+<section id="guia"><div class="wrap"><h2>Fatie no Bambu Studio</h2><p class="sub">Fatiar é transformar o modelo em camadas e movimentos para a impressora. Você faz isso no computador.</p>
+<div class="tabela" style="margin-bottom:28px"><table><thead><tr><th>Ajuste</th><th>Ponto de partida (ainda não testado)</th><th>Onde fica</th></tr></thead><tbody>
+<tr><td>Impressora</td><td>Bambu Lab A1, bico 0,4 mm</td><td>Topo à esquerda</td></tr>
+<tr><td>Filamento</td><td>PETG da sua marca ou Generic PETG</td><td>Painel Filamento</td></tr>
+<tr><td>Altura da camada</td><td>0,20 mm</td><td>Qualidade (Quality)</td></tr>
+<tr><td>Paredes</td><td>4</td><td>Resistência (Strength) → Wall loops</td></tr>
+<tr><td>Preenchimento</td><td>25%</td><td>Resistência → Sparse infill density</td></tr>
+<tr><td>Suporte</td><td>Ligado, Normal automático</td><td>Suporte (Support)</td></tr>
+<tr><td>Escala</td><td>100%, sem girar a peça</td><td>Mesa virtual</td></tr>
+</tbody></table></div>
+<div class="step"><div class="b">1</div><div><h3>Escolha sua impressora</h3><p>Abra o Bambu Studio. Selecione Bambu Lab A1, bico de 0,4 mm, a placa instalada e o filamento real. Se precisar instalar, use o <a href="https://bambulab.com/en/download/studio" rel="noopener" target="_blank">download oficial</a>.</p></div></div>
+<div class="step"><div class="b">2</div><div><h3>Abra só o berço</h3><p>Arraste o berço para a mesa virtual e mantenha 100%. Ele já vem apoiado pelas costas: não o gire para ficar como aparece montado. Tamanho esperado: 51,6 × 24 × 31,9 mm. Medida muito diferente indica escala ou orientação errada.</p></div></div>
+<div class="step"><div class="b">3</div><div><h3>Configure como na tabela</h3><p>Paredes são o contorno da peça; preenchimento é a estrutura de dentro. Suporte é uma estrutura provisória que segura trechos que ficariam sem plástico embaixo, e sai depois. Se algum campo estiver escondido, ligue o modo Avançado. Com PETG na impressora, não selecione PLA no programa.</p></div></div>
+<div class="step"><div class="b">4</div><div><h3>Clique em Fatiar mesa</h3><p>O botão também aparece como Slice Plate. Na Prévia, percorra as camadas: a primeira camada deve estar toda na mesa, nada começando no ar, suporte onde precisa. O programa mostra o tempo e o filamento de verdade. Se aparecer aviso de malha ou orientação, pare e confira antes de imprimir.</p></div></div>
+<div class="step"><div class="b">5</div><div><h3>Mande para a A1</h3><p>Pelo cartão microSD: Arquivo → Exportar → Exportar arquivo fatiado da mesa (File → Export → Export plate sliced file). Copie para o cartão o arquivo que termina em <code>.gcode.3mf</code>, não o STL. Na A1, abra a lista do cartão, escolha a peça e confira placa e filamento antes de iniciar.</p></div></div>
+<div class="step"><div class="b">6</div><div><h3>Teste o berço antes da base</h3><p>Deixe esfriar e tire o suporte. Com o módulo desligado, encaixe por cima sem forçar a tela. Confira botões, conector USB e as saídas de som. <strong>Se apertar, pare:</strong> não imprima a base, meça largura e espessura da carcaça com o paquímetro e <a href="https://github.com/inematds/robo-caixa-fixa/issues/new?title=Ajuste%20do%20ber%C3%A7o%3A%20medidas%20do%20meu%20m%C3%B3dulo&body=Vers%C3%A3o%20comprada%20%28ex.%3A%20ESP32-S3-Touch-LCD-1.54%29%3A%0ALargura%20da%20carca%C3%A7a%20%28mm%29%3A%0AAltura%20da%20carca%C3%A7a%20%28mm%29%3A%0AEspessura%20da%20carca%C3%A7a%20%28mm%29%3A%0AOnde%20apertou%20ou%20ficou%20folgado%3A%0AFoto%20do%20encaixe%20%28arraste%20aqui%29%3A%0A" rel="noopener" target="_blank">abra um pedido de ajuste do berço no GitHub</a> com essas medidas (o formulário já vem com os campos; precisa de uma conta gratuita no GitHub). Não aumente a escala: isso muda a distância entre os furos dos parafusos.</p></div></div>
+<div class="step"><div class="b">7</div><div><h3>Só então imprima a base</h3><p>Abra o segundo STL, apoiado no piso, e repita o fatiamento. O INEMA já faz parte da peça: use uma cor só.</p></div></div>
+</div></section>
+
+<section id="montagem"><div class="wrap"><h2>Monte em quatro passos</h2><p class="sub">Monte o suporte antes de colocar o módulo. As imagens são do modelo real; parafusos e porcas estão simplificados.</p>
+<div class="monta">
+  <figure class="foto"><img alt="Berço sozinho com o módulo descendo por cima" loading="lazy" src="assets/r-passo1.jpg"/><figcaption><b>Teste o berço</b>Com o berço impresso e solto, encaixe o módulo por cima. Ele deve deslizar sem forçar.</figcaption></figure>
+  <figure class="foto"><img alt="Berço diante da coluna da base, com dois parafusos à frente e duas porcas atrás" loading="lazy" src="assets/r-passo2.jpg"/><figcaption><b>Parafuse na coluna</b>Encoste o berço na frente da coluna, passe os dois M3 × 16 pela frente e rosqueie as porcas atrás.</figcaption></figure>
+  <figure class="foto"><img alt="Suporte montado com o módulo descendo por cima até o berço" loading="lazy" src="assets/r-passo3.jpg"/><figcaption><b>Desça o módulo</b>Com o suporte firme, coloque o módulo por cima até apoiar no fundo do berço.</figcaption></figure>
+  <figure class="foto"><img alt="Vista de trás do conjunto montado mostrando as porcas na coluna" loading="lazy" src="assets/r-costas.jpg"/><figcaption><b>Confira por trás</b>Porcas apertadas, tela livre na frente e cabo USB sem dobra forte. A posição real do plugue ainda precisa ser conferida.</figcaption></figure>
+</div>
+<div class="aviso"><svg><use href="#i-alerta"/></svg><p><strong>O módulo fica preso pelo próprio peso.</strong> Não há trava: se você levantar o conjunto segurando pela cabeça ou virar a base, ele sai. Carregue sempre pela base.</p></div></div></section>
+
+<section id="verificacao"><div class="wrap"><h2>O que foi conferido no computador</h2><p class="sub">O gerador CAD (<code>cad/gerar.py</code>) roda estes testes toda vez que cria as peças. Os números vêm de <a href="downloads/verificacao.json">verificacao.json</a>.</p>
+<div class="checks">
+  <div class="card"><span class="rotulo ok">passou</span><b class="v">2 de 2</b><h3>Malhas fechadas, um corpo cada</h3><p>Base e berço têm volume positivo e nenhuma parte solta.</p></div>
+  <div class="card"><span class="rotulo ok">passou</span><b class="v">0,0 mm³</b><h3>Nenhuma peça invade o módulo</h3><p>Nem a base nem o berço ocupam o espaço da caixa de 46 × 46 × 22,5 mm, e uma não invade a outra.</p></div>
+  <div class="card"><span class="rotulo ok">passou</span><b class="v">5 alturas</b><h3>O módulo sai por cima</h3><p>Subindo 1, 5, 15, 30 e 60 mm, o módulo não esbarra em nada.</p></div>
+  <div class="card"><span class="rotulo ok">passou</span><b class="v">48,72 mm³</b><h3>O teste pega erro de verdade</h3><p>Com um módulo 2 mm mais largo, o teste acusa a sobreposição. Isso mostra que ele não aprova tudo.</p></div>
+  <div class="card"><span class="rotulo ok">passou</span><b class="v">16 × 14 mm</b><h3>Corredor para o USB</h3><p>Um espaço livre embaixo do módulo, reservado para o plugue. É uma estimativa: o plugue real não foi medido.</p></div>
+  <div class="card"><span class="rotulo">falta</span><b class="v">bancada</b><h3>O que só o teste físico responde</h3><p>Fatiamento conferido, impressão, encaixe na sua versão, plugue USB real, som, estabilidade ao tocar e resistência.</p></div>
+</div></div></section>
+
+<section id="roteiro"><div class="wrap"><h2>Onde o projeto está</h2>
+<div class="phase"><div class="tag">Feito</div><div class="d"><strong>Estudo mecânico 01</strong><span>Duas peças desenhadas a partir das medidas oficiais, INEMA em relevo, testes geométricos, STL e montagem 3D publicados.</span></div></div>
+<div class="phase"><div class="tag">Agora</div><div class="d"><strong>Teste do berço na bancada</strong><span>Imprimir o berço, conferir o encaixe na versão comprada, o USB, os botões e o som.</span></div></div>
+<div class="phase"><div class="tag">Depois</div><div class="d"><strong>Ajuste e peças finais</strong><span>Corrigir folgas, decidir se precisa de trava contra queda, conferir a estabilidade e liberar STL finais com material e ajustes de impressão.</span></div></div>
+<div class="phase"><div class="tag">Futuro</div><div class="d"><strong>Rosto e conversa</strong><span>Programa do rosto na tela. Conversa por voz pelo computador de casa ou direto por uma API é uma opção para depois, ainda não decidida.</span></div></div>
+</div></section>
+
+<section id="perguntas"><div class="wrap"><h2>Perguntas frequentes</h2>
+<details><summary>Preciso soldar ou abrir o módulo?</summary><p>Não. O módulo entra inteiro, com a carcaça de fábrica. Os únicos fixadores são os dois parafusos M3 que unem o berço à base.</p></details>
+<details><summary>Serve para a M5Stack CoreS3 ou outra placa?</summary><p>Não. O berço foi desenhado para a carcaça de 46 × 46 × 22,5 mm do módulo Waveshare. Outras placas têm outras medidas.</p></details>
+<details><summary>Posso imprimir em PLA?</summary><p>O ponto de partida proposto é PETG, e nenhum dos dois foi testado ainda. PLA deve imprimir a forma, mas a folga e a rigidez podem mudar. Teste primeiro o berço, que é pequeno.</p></details>
+<details><summary>O robô já conversa?</summary><p>Ainda não. Este projeto entrega só o suporte físico. O rosto na tela e a conversa por voz são a próxima etapa, em software.</p></details>
+<details><summary>O berço ficou apertado. Aumento a escala?</summary><p>Não. Aumentar a escala muda também a posição dos furos e a peça deixa de casar com a base. Meça a carcaça e <a href="https://github.com/inematds/robo-caixa-fixa/issues/new?title=Ajuste%20do%20ber%C3%A7o%3A%20medidas%20do%20meu%20m%C3%B3dulo&body=Vers%C3%A3o%20comprada%20%28ex.%3A%20ESP32-S3-Touch-LCD-1.54%29%3A%0ALargura%20da%20carca%C3%A7a%20%28mm%29%3A%0AAltura%20da%20carca%C3%A7a%20%28mm%29%3A%0AEspessura%20da%20carca%C3%A7a%20%28mm%29%3A%0AOnde%20apertou%20ou%20ficou%20folgado%3A%0AFoto%20do%20encaixe%20%28arraste%20aqui%29%3A%0A" rel="noopener" target="_blank">abra um pedido de ajuste do berço</a> com as medidas.</p></details>
+<details><summary>A base e o berço podem ter cores diferentes?</summary><p>Sim, são peças separadas. Os renders mostram base amarela e berço grafite. O INEMA da base sai na mesma cor da própria base.</p></details>
+</div></section>
+</div>
+
+<footer><div class="wrap"><p><span class="pill">Blender</span><span class="pill">manifold3d</span><span class="pill">trimesh</span><span class="pill">Bambu Studio</span></p><p>Robô caixa fixa · projeto aberto de pesquisa e educação</p><p><a href="https://github.com/inematds/robo-caixa-fixa">Código e arquivos</a> · <a href="https://inema.club">INEMA.CLUB</a> · <a href="https://inema.pro">PRO</a></p></div></footer>
+<script>(function(){const b=document.body,t=document.getElementById('themeToggle'),k='robo-caixa-fixa-theme';try{if(localStorage.getItem(k)==='light'){b.classList.add('light');t.textContent='🌙'}}catch(e){}t.addEventListener('click',function(){const light=b.classList.toggle('light');t.textContent=light?'🌙':'☀️';try{localStorage.setItem(k,light?'light':'dark')}catch(e){}})})();</script>
+</body></html>
