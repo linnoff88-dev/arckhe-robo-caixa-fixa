@@ -51,9 +51,9 @@ def cradle():
 def marca():
     """Letras engrossadas em 0,4 mm, relevo de 1,2 mm, afastadas da borda."""
     font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', 200)
-    bounds = font.getbbox('INEMA')
+    bounds = font.getbbox('ARCKHÉ')
     mask = Image.new('L', (bounds[2]-bounds[0]+20,bounds[3]-bounds[1]+20), 0)
-    ImageDraw.Draw(mask).text((10-bounds[0],10-bounds[1]), 'INEMA', font=font, fill=255)
+    ImageDraw.Draw(mask).text((10-bounds[0],10-bounds[1]), 'ARCKHÉ', font=font, fill=255)
     contours = find_contours(np.asarray(mask), 127.5)
     paths = [np.column_stack([c[:,1],-c[:,0]]) for c in contours]
     xy = np.vstack(paths)
@@ -80,7 +80,7 @@ print_parts={'base':assembly['base'].copy(),'berco':assembly['berco'].copy()}
 # Berço apoiado pela face traseira: as paredes nascem no plano da mesa.
 print_parts['berco'].apply_transform(trimesh.transformations.rotation_matrix(-np.pi/2,[1,0,0]))
 report={'status':'estudo; nêo liberado para impressêo final',
-        'marca':{'texto':'INEMA','largura_nominal_mm':36,'engrossamento_contorno_por_lado_mm':0.2,'relevo_mm':1.2,'recuo_adicional_mm':4,'centro_y_mm':-6.5,'posicao':'topo frontal da base','cor':'mesmo filamento da base; sólido único'},
+        'marca':{'texto':'ARCKHÉ','largura_nominal_mm':36,'engrossamento_contorno_por_lado_mm':0.2,'relevo_mm':1.2,'recuo_adicional_mm':4,'centro_y_mm':-6.5,'posicao':'topo frontal da base','cor':'mesmo filamento da base; sólido único'},
         'modulo_mm':[46,22.5,46], 'modulo_dimensao_fonte':'https://docs.waveshare.com/ESP32-S3-Touch-LCD-1.54#dimensions',
         'folga_lateral_por_lado_mm':0.4,'folga_traseira_mm':0.8,
         'fixacao':'2 parafusos M3 x 16 e 2 porcas M3; confirmar na bancada',

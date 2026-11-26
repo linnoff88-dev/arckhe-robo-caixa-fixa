@@ -1,6 +1,6 @@
 # Robô caixa fixa
 
-[![Robô caixa fixa](guia/assets/banner-es.jpg)](https://inematds.github.io/robo-caixa-fixa/guia/es/)
+[![Robô caixa fixa](guia/assets/banner-es.jpg)](https://linnoff88-dev.github.io/arckhe-/guia/es/)
 
 **[Português](README.md) · [English](README.en.md) · [Español](README.es.md)**
 
@@ -10,7 +10,7 @@ Quienes quieren un robot de escritorio suelen encontrarse con la parte mecánica
 
 ## Guía y descargas
 
-**https://inematds.github.io/robo-caixa-fixa/guia/es/**
+**https://linnoff88-dev.github.io/arckhe-/guia/es/**
 
 La guía incluye los STL, el paquete ZIP, el montaje 3D, las verificaciones y los pasos para laminar con la A1. Empieza por la cuna. Los archivos son prototipos de estudio y todavía no se han validado físicamente; no hay G-code ni un perfil 3MF validado.
 
@@ -23,7 +23,7 @@ Quién hace qué: 🧠 sesión con Nei · ⚙️ script · 🤖 `claude -p`.
 3. ⚙️ Exportar las piezas ensambladas para renderizar: `../robos-impressos/.venv/bin/python scripts/exporta_partes.py <pasta>`.
 4. ⚙️ Renderizar las imágenes de la guía en Blender (CPU, ~25 min): `blender -b -P scripts/render_guia.py -- <pasta> <saida>`; convertirlas a `guia/assets/r-*.jpg` y `r-orto-*.webp`.
 5. 🧠 Banners PT/EN/ES con Codex (`gerar-banner.sh` de la skill projetos-landing-guia, estilos live y grade), usando el render del conjunto como referencia de forma; revisar el texto de cada uno.
-6. 🧠 Escribir la guía PT (`guia/index.html`); ⚙️ traducirla a `guia/en/` y `guia/es/` con `inema-traduz`.
+6. 🧠 Escribir la guía PT (`guia/index.html`); ⚙️ traducirla a `guia/en/` y `guia/es/` con `ARCKHÉ-traduz`.
 7. 🤖 Revisión independiente; comprobar a 360 px, las imágenes y el visor 3D por HTTP local.
 8. 🧠 OK de Nei, commit y push; GitHub Pages publica automáticamente.
 9. 🧠 Prueba física del soporte en la A1 (pendiente) antes de liberar los archivos STL finales.
@@ -35,7 +35,7 @@ Quién hace qué: 🧠 sesión con Nei · ⚙️ script · 🤖 `claude -p`.
 - [Generador CAD](cad/gerar.py).
 - [Verificación](estudo/verificacao.json).
 
-Dos piezas y dos tornillos M3 × 16 con tuercas, por verificar en el banco de trabajo. INEMA en relieve de 1,2 mm, con letras engrosadas y retraídas 4 mm. El programa para el rostro y la IA quedan para una etapa futura.
+Dos piezas y dos tornillos M3 × 16 con tuercas, por verificar en el banco de trabajo. ARCKHÉ en relieve de 1,2 mm, con letras engrosadas y retraídas 4 mm. El programa para el rostro y la IA quedan para una etapa futura.
 
 ## Vídeo del proyecto
 

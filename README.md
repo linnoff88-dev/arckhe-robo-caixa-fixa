@@ -6,7 +6,7 @@
 </div>
 
 
-[![RobêÂ´ caixa fixa](guia/assets/banner.jpg)](https://inematds.github.io/robo-caixa-fixa/guia/)
+[![RobêÂ´ caixa fixa](guia/assets/banner.jpg)](https://linnoff88-dev.github.io/arckhe-/guia/)
 
 **[PortuguêÂªs](README.md) êÂ· [English](README.en.md) êÂ· [EspaêÂ±ol](README.es.md)**
 
@@ -16,7 +16,7 @@ Quem quer um robêÂ´ de mesa costuma esbarrar na parte mecêÂ¢nica: serv
 
 ## Guia e downloads
 
-**https://inematds.github.io/robo-caixa-fixa/guia/**
+**https://linnoff88-dev.github.io/arckhe-/guia/**
 
 O guia tem os STL, pacote ZIP, montagem 3D, verificaêÂ§êÂµes e passo a passo de fatiamento para a A1. Comece pelo berêÂ§o. Os arquivos sêÂ£o de estudo e ainda nêÂ£o foram validados fisicamente; nêÂ£o hêÂ¡ G-code nem perfil 3MF validado.
 
@@ -29,7 +29,7 @@ Quem faz: ê°Å¸Â§Â  sessêÂ£o com o Nei êÂ· ê¢Å¡â¢ê¯Â
 3. ê¢Å¡â¢ê¯Â¸Â Exportar as peêÂ§as montadas para o render: `../robos-impressos/.venv/bin/python scripts/exporta_partes.py <pasta>`.
 4. ê¢Å¡â¢ê¯Â¸Â Renderizar as imagens do guia no Blender (CPU, ~25 min): `blender -b -P scripts/render_guia.py -- <pasta> <saida>`; converter para `guia/assets/r-*.jpg` e `r-orto-*.webp`.
 5. ê°Å¸Â§Â  Banners PT/EN/ES pelo Codex (`gerar-banner.sh` da skill projetos-landing-guia, estilos live e grade), com o render do conjunto como referêÂªncia de forma; conferir o texto de cada um.
-6. ê°Å¸Â§Â  Escrever o guia PT (`guia/index.html`); ê¢Å¡â¢ê¯Â¸Â traduzir para `guia/en/` e `guia/es/` com `inema-traduz`.
+6. ê°Å¸Â§Â  Escrever o guia PT (`guia/index.html`); ê¢Å¡â¢ê¯Â¸Â traduzir para `guia/en/` e `guia/es/` com `ARCKHÉ-traduz`.
 7. ê°Å¸Â¤â Revisor independente; conferir 360 px, imagens e visualizador 3D por HTTP local.
 8. ê°Å¸Â§Â  OK do Nei, commit e push; o GitHub Pages publica sozinho.
 9. ê°Å¸Â§Â  Teste fêÂ­sico do berêÂ§o na A1 (pendente) antes de liberar STL finais.
@@ -41,7 +41,7 @@ Quem faz: ê°Å¸Â§Â  sessêÂ£o com o Nei êÂ· ê¢Å¡â¢ê¯Â
 - [Gerador CAD](cad/gerar.py).
 - [VerificaêÂ§êÂ£o](estudo/verificacao.json).
 
-Duas peêÂ§as e dois parafusos M3 êâ 16 com porcas, a conferir na bancada. INEMA em relevo de 1,2 mm, engrossado e recuado 4 mm. Programa do rosto e IA ficam para uma etapa futura.
+Duas peêÂ§as e dois parafusos M3 êâ 16 com porcas, a conferir na bancada. ARCKHÉ em relevo de 1,2 mm, engrossado e recuado 4 mm. Programa do rosto e IA ficam para uma etapa futura.
 
 ## VêÂ­deo do projeto
 

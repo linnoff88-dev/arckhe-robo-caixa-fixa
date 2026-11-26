@@ -4,7 +4,7 @@ Comece pelo berco-ESTUDO.stl. Nêo imprima a base antes de testar o encaixe no m
 
 CONTEÚDO DESTE ZIP
 - berco-ESTUDO.stl: peça que segura o módulo.
-- base-ESTUDO.stl: base e coluna com INEMA em relevo, na mesma cor.
+- base-ESTUDO.stl: base e coluna com ARCKHÉ em relevo, na mesma cor.
 - montagem-ESTUDO.glb: montagem 3D para visualizar; nêo é arquivo para imprimir.
 - verificacao.json: testes geométricos, medidas e limites.
 - LEIA-ANTES-DE-IMPRIMIR.txt: estas instruções.
@@ -25,4 +25,4 @@ Protótipo: sem impressêo, fatiamento, acústica, resistência ou estabilidade 
 Este pacote nêo contém G-code nem perfil 3MF validado. Nêo precisa de Python para abrir os STL. Software de rosto/conversa por IA nêo está incluído.
 
 GUIA COMPLETO
-https://inematds.github.io/robo-caixa-fixa/guia/
+https://linnoff88-dev.github.io/arckhe-/guia/

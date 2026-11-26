@@ -255,13 +255,13 @@ def t_explodida():
     render('r-explodida', 1600, 1300)
 
 
-def t_inema():
+def t_ARCKHÉ():
     limpar(); o, _ = montar(); piso()
     luz('rasante', (-0.30, -0.10, 0.03), (0, -0.006, 0.005), 0.7, 0.05, (1.0, 0.86, 0.66))
     luz('topo', (0.05, -0.12, 0.25), (0, -0.006, 0.0), 0.15, 0.2, (0.85, 0.9, 1.0))
     luz('recorte', (0.15, 0.25, 0.15), (0, 0.0, 0.03), 0.5, 0.1, (1.0, 0.8, 0.5))
     camera((0.0, -0.150, 0.075), (0.0, -0.004, 0.004), 105)
-    render('r-inema', 1600, 900)
+    render('r-ARCKHÉ', 1600, 900)
 
 
 def t_costas():
@@ -343,7 +343,7 @@ def t_orto():
 
 
 for nome, f in [('conjunto', t_conjunto), ('frente', t_frente), ('explodida', t_explodida),
-                ('inema', t_inema), ('costas', t_costas), ('passos', t_passos),
+                ('ARCKHÉ', t_ARCKHÉ), ('costas', t_costas), ('passos', t_passos),
                 ('mesa', t_mesa), ('orto', t_orto)]:
     if quer(nome):
         f()
