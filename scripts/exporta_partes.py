@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Exporta base e berço na posição de montagem (Z para cima) para os renders do guia.
+"""Exporta base e berço na posiçêo de montagem (Z para cima) para os renders do guia.
 
-Lê só estudo/montagem-ESTUDO.glb; não regenera os STL publicados.
+Lê só estudo/montagem-ESTUDO.glb; nêo regenera os STL publicados.
 Uso: ../robos-impressos/.venv/bin/python scripts/exporta_partes.py <pasta-saida>
 """
 import sys

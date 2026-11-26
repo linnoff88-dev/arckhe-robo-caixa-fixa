@@ -3,8 +3,8 @@
 Uso:
   blender -b -P scripts/render_guia.py -- <pasta-partes> <pasta-saida> [tomada ...]
 
-<pasta-partes> vem de scripts/exporta_partes.py (base.stl e berco.stl na posição de montagem).
-Base e berço são as malhas reais. Módulo, parafusos e porcas são representações simples:
+<pasta-partes> vem de scripts/exporta_partes.py (base.stl e berco.stl na posiçêo de montagem).
+Base e berço sêo as malhas reais. Módulo, parafusos e porcas sêo representações simples:
 o módulo é o envelope oficial 46 x 46 x 22,5 mm com cantos arredondados de 2 mm.
 Nenhum texto é desenhado na imagem; legendas e cotas ficam no HTML (três idiomas).
 """
@@ -29,7 +29,7 @@ def limpar():
     sc = bpy.context.scene
     sc.render.engine = 'CYCLES'
     sc.cycles.device = 'CPU'
-    sc.cycles.samples = int(__import__('os').environ.get('AMOSTRAS', 512))  # este Blender não tem OpenImageDenoise
+    sc.cycles.samples = int(__import__('os').environ.get('AMOSTRAS', 512))  # este Blender nêo tem OpenImageDenoise
     sc.cycles.adaptive_threshold = 0.006
     sc.cycles.use_denoising = False
     sc.render.threads_mode = 'FIXED'
@@ -125,7 +125,7 @@ def juntar(obs, nome):
 
 
 def parafuso(nome, x, z, aco):
-    """M3 x 16 de cabeça cilíndrica: cabeça no vão atrás do módulo, corpo para trás (+Y)."""
+    """M3 x 16 de cabeça cilíndrica: cabeça no vêo atrás do módulo, corpo para trás (+Y)."""
     cab = cilindro(nome + '-cab', 2.75, 3.0, aco)
     cab.location = (x * MM, 24.0 * MM, z * MM)
     corpo = cilindro(nome + '-corpo', 1.5, 16.0, aco, 24)
@@ -299,7 +299,7 @@ def t_passos():
 
 
 def t_mesa():
-    """As duas peças na orientação dos STL publicados, na mesa de 256 mm da A1."""
+    """As duas peças na orientaçêo dos STL publicados, na mesa de 256 mm da A1."""
     limpar()
     m_base = material('base', (0.80, 0.52, 0.06), 0.38, coat=0.15, camadas=True)
     m_berco = material('berco', (0.045, 0.050, 0.058), 0.42, coat=0.1, camadas=True)

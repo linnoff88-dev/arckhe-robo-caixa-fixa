@@ -1,7 +1,7 @@
 {
   "projeto_origem": "/home/nmaldaner/projetos/robos-impressos",
   "commit_origem": "df6a551f36e29d4beaa3ec8c63d0975a16cdc333",
-  "finalidade": "Referências do cubo móvel; não são peças aprovadas para o novo robô fixo.",
+  "finalidade": "Referências do cubo móvel; nêo sêo peças aprovadas para o novo robô fixo.",
   "arquivos": [
     {
       "origem": "projetos/cubo/stl/cubo-cabeca-corpo.stl",

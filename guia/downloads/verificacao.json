@@ -1,5 +1,5 @@
 {
-  "status": "estudo; não liberado para impressão final",
+  "status": "estudo; nêo liberado para impressêo final",
   "marca": {
     "texto": "INEMA",
     "largura_nominal_mm": 36,
@@ -56,9 +56,9 @@
   },
   "limites": [
     "Sem teste físico ou fatiamento.",
-    "Plugue USB, raio do cabo, aba de proteção touch, áudio e pressão sobre o módulo precisam de conferência física.",
-    "Retenção vertical por gravidade: módulo sai por cima; não transportar segurando pelo módulo.",
-    "Posição dos microfones e do alto-falante não está cotada; laterais superiores ficam abertas, mas a acústica não foi validada.",
+    "Plugue USB, raio do cabo, aba de proteçêo touch, áudio e pressêo sobre o módulo precisam de conferência física.",
+    "Retençêo vertical por gravidade: módulo sai por cima; nêo transportar segurando pelo módulo.",
+    "Posiçêo dos microfones e do alto-falante nêo está cotada; laterais superiores ficam abertas, mas a acústica nêo foi validada.",
     "Sem análise de resistência, tombamento sob toque ou suporte do fatiador."
   ]
 }
